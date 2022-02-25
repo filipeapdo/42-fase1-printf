@@ -1,0 +1,9 @@
+*subject.pdf
+*.a
+*.so
+*.o
+*.out
+*.log
+*.md
+*test*
+libft
