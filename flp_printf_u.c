@@ -6,14 +6,14 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 15:44:57 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/02/28 16:24:38 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/02/28 18:05:00 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "ft_printf.h"
 
-static int	flp_intlen_unsiged(unsigned int n)
+static int	flp_intlen_u(unsigned int n)
 {
 	int	len;
 
@@ -29,12 +29,12 @@ static int	flp_intlen_unsiged(unsigned int n)
 	return (len);
 }
 
-static char	*flp_itoa_unsiged(unsigned int n)
+static char	*flp_itoa_u(unsigned int n)
 {
 	int		len;
 	char	*nptr;
 
-	len = flp_intlen_unsiged(n);
+	len = flp_intlen_u(n);
 	nptr = (char *)malloc(sizeof(char) * (len + 1));
 	if (!nptr)
 		return (NULL);
@@ -56,7 +56,7 @@ int	flp_printf_u(unsigned int n)
 	char	*str;
 
 	cnt = 0;
-	str = flp_itoa_unsiged(n);
+	str = flp_itoa_u(n);
 	cnt = flp_printf_s(str);
 	free(str);
 	return (cnt);

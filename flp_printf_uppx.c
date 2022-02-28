@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flp_printf_X.c                                     :+:      :+:    :+:   */
+/*   flp_printf_uppx.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 17:02:59 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/02/28 17:08:06 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/02/28 18:09:19 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "ft_printf.h"
 
-static int	flp_intlen_unsigned(unsigned int n)
+static int	flp_intlen_u(unsigned int n)
 {
 	int	len;
 
@@ -29,12 +29,12 @@ static int	flp_intlen_unsigned(unsigned int n)
 	return (len);
 }
 
-static char	*flp_itouppx_unsigned(unsigned int n)
+static char	*flp_itouppx_u(unsigned int n)
 {
 	int		len;
 	char	*nptr;
 
-	len = flp_intlen_unsigned(n);
+	len = flp_intlen_u(n);
 	nptr = (char *)malloc(sizeof(char) * (len + 1));
 	if (!nptr)
 		return (NULL);
@@ -59,7 +59,7 @@ int	flp_printf_uppx(unsigned int n)
 	char	*str;
 
 	cnt = 0;
-	str = flp_itouppx_unsigned(n);
+	str = flp_itouppx_u(n);
 	cnt = flp_printf_s(str);
 	free(str);
 	return (cnt);
