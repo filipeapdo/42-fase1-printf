@@ -6,7 +6,7 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:30:52 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/02/28 15:22:45 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/02/28 16:12:27 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	flp_printf_c(char c);
 int	flp_printf_s(char *s);
 int	flp_printf_d(int n);
 int	flp_printf_i(int n);
+int	flp_printf_u(unsigned int n);
 int	flp_printf_percent(void);
 
 #endif
