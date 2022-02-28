@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flp_printf_u.c                                     :+:      :+:    :+:   */
+/*   flp_printf_x.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/28 15:44:57 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/02/28 16:24:38 by fiaparec         ###   ########.fr       */
+/*   Created: 2022/02/28 16:24:33 by fiaparec          #+#    #+#             */
+/*   Updated: 2022/02/28 16:54:47 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "ft_printf.h"
 
-static int	flp_intlen_unsiged(unsigned int n)
+static int	flp_intlen_unsigned(unsigned int n)
 {
 	int	len;
 
@@ -24,17 +24,17 @@ static int	flp_intlen_unsiged(unsigned int n)
 	while (n != 0)
 	{
 		len++;
-		n /= 10;
+		n /= 16;
 	}
 	return (len);
 }
 
-static char	*flp_itoa_unsiged(unsigned int n)
+static char	*flp_itox_unsigned(unsigned int n)
 {
 	int		len;
 	char	*nptr;
 
-	len = flp_intlen_unsiged(n);
+	len = flp_intlen_unsigned(n);
 	nptr = (char *)malloc(sizeof(char) * (len + 1));
 	if (!nptr)
 		return (NULL);
@@ -44,19 +44,22 @@ static char	*flp_itoa_unsiged(unsigned int n)
 	while (n > 0)
 	{
 		len--;
-		*(nptr + len) = n % 10 + '0';
-		n /= 10;
+		if ((n % 16) < 10)
+			*(nptr + len) = n % 16 + '0';
+		else
+			*(nptr + len) = n % 16 + 87;
+		n /= 16;
 	}
 	return (nptr);
 }
 
-int	flp_printf_u(unsigned int n)
+int	flp_printf_x(unsigned int n)
 {
 	int		cnt;
 	char	*str;
 
 	cnt = 0;
-	str = flp_itoa_unsiged(n);
+	str = flp_itox_unsigned(n);
 	cnt = flp_printf_s(str);
 	free(str);
 	return (cnt);
