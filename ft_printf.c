@@ -6,54 +6,50 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:26:15 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/02/25 15:57:57 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/02/28 10:33:09 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/src/libft.h"
-#include "libftprintf.h"
+#include <stdio.h>
+#include "libft/libft.h"
+#include "ft_printf.h"
 
-static void	flp_check_type(char c, va_list ptr)
+static int	flp_check_format(char conv_spec, va_list arg)
 {
-	// char	crt;
+	int		cnt = 0;
 
-	if (c == 'c')
-	{
-		ft_putchar_fd(va_arg(ptr, int), 1);
-	}
+	if (conv_spec == '%')
+		cnt += flp_printf_percent();
+	else if (conv_spec == 'c')
+		cnt += flp_printf_c((char)va_arg(arg, int));
+	return (cnt);
 }
 
-int	ft_printf(const char *list, ...)
+int	ft_printf(const char *format, ...)
 {
 	int		i;
-	// char	c;
-	char 	*str;
-	va_list	ptr;
+	int		cnt;
+	char	*str;
+	va_list	arg;
 
-	// va_start
-	va_start(ptr, list);
-
-	str = ft_strdup(list);
-
+	va_start(arg, format);
+	str = ft_strdup(format);
 	i = 0;
+	cnt = 0;
 	while (*(str + i))
 	{
 		if (*(str + i) == '%')
 		{
-			// chamar alguma função para o str++
 			i++;
-			flp_check_type(*(str + i++), ptr);
+			cnt += flp_check_format(*(str + i++), arg);
 		}
-		else
+		else if (*(str + i) != '\0')
 		{
 			ft_putchar_fd(*(str + i++), 1);
+			cnt++;
 		}
 	}
-
 	free(str);
-
-	// va_end
-	va_end(ptr);
-
-	return (0);
+	va_end(arg);
+	return (cnt);
 }

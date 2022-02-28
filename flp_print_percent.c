@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   flp_print_percent.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/25 10:30:52 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/02/25 14:10:48 by fiaparec         ###   ########.fr       */
+/*   Created: 2022/02/28 10:27:48 by fiaparec          #+#    #+#             */
+/*   Updated: 2022/02/28 10:28:14 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#include "libft/libft.h"
+#include "ft_printf.h"
 
-#include <stdarg.h>
-
-int	ft_printf(const char *list, ...);
-
-#endif
+int	flp_printf_percent(void)
+{
+	ft_putchar_fd('%', 1);
+	return (1);
+}
