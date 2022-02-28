@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flp_print_percent.c                                :+:      :+:    :+:   */
+/*   flp_printf_s.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/28 10:27:48 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/02/28 10:28:14 by fiaparec         ###   ########.fr       */
+/*   Created: 2022/02/28 10:50:15 by fiaparec          #+#    #+#             */
+/*   Updated: 2022/02/28 15:05:34 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "ft_printf.h"
 
-int	flp_printf_percent(void)
+int	flp_printf_s(char *s)
 {
-	ft_putchar_fd('%', 1);
-	return (1);
+	if (!s)
+	{
+		ft_putstr_fd("(null)", 1);
+		return(6);
+	}
+	ft_putstr_fd(s, 1);
+	return (ft_strlen(s));
 }
