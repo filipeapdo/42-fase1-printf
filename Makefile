@@ -6,7 +6,7 @@
 #    By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/25 08:38:39 by fiaparec          #+#    #+#              #
-#    Updated: 2022/02/25 15:31:51 by fiaparec         ###   ########.fr        #
+#    Updated: 2022/02/28 10:30:01 by fiaparec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ LIBFT_BUILD		= cd libft && $(MAKE) all && $(MAKE) clean
 LIBFT_SRC		= libft/libft.a
 # LIBFT_LINK		= -Llibft -l:libft.a
 
-SRCS			= ft_printf.c
+SRCS			= ft_printf.c flp_printf_c.c \
+					flp_print_percent.c
 OBJS			= $(SRCS:.c=.o)
 
 NAME			= libftprintf.a
