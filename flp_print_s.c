@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   flp_print_s.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/25 10:30:52 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/02/28 10:51:05 by fiaparec         ###   ########.fr       */
+/*   Created: 2022/02/28 10:50:15 by fiaparec          #+#    #+#             */
+/*   Updated: 2022/02/28 11:17:55 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft/libft.h"
+#include "ft_printf.h"
 
-#include <stdarg.h>
-
-int	ft_printf(const char *format, ...);
-int	flp_printf_c(char c);
-int	flp_printf_s(char *s);
-int	flp_printf_percent(void);
-
-#endif
+int	flp_printf_s(char *s)
+{
+	if (!s)
+	{
+		ft_putstr_fd("(null)", 1);
+		return(6);
+	}
+	ft_putstr_fd(s, 1);
+	return (ft_strlen(s));
+}

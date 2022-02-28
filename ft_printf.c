@@ -6,7 +6,7 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:26:15 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/02/28 10:33:09 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/02/28 10:51:38 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static int	flp_check_format(char conv_spec, va_list arg)
 		cnt += flp_printf_percent();
 	else if (conv_spec == 'c')
 		cnt += flp_printf_c((char)va_arg(arg, int));
+	else if (conv_spec == 's')
+		cnt += flp_printf_s((char *)va_arg(arg, void *));
 	return (cnt);
 }
 
