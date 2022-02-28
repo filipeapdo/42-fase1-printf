@@ -6,7 +6,7 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:26:15 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/02/28 17:03:52 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/02/28 17:30:19 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	flp_check_format(char conv_spec, va_list arg)
 	else if (conv_spec == 's')
 		cnt += flp_printf_s(va_arg(arg, char *));
 	else if (conv_spec == 'p')
-		cnt += flp_printf_s(va_arg(arg, void *));
+		cnt += flp_printf_p(va_arg(arg, unsigned long int));
 	else if (conv_spec == 'd')
 		cnt += flp_printf_d(va_arg(arg, int));
 	else if (conv_spec == 'i')
@@ -34,7 +34,7 @@ static int	flp_check_format(char conv_spec, va_list arg)
 	else if (conv_spec == 'x')
 		cnt += flp_printf_x(va_arg(arg, unsigned int));
 	else if (conv_spec == 'X')
-		cnt += flp_printf_X(va_arg(arg, unsigned int));
+		cnt += flp_printf_uppx(va_arg(arg, unsigned int));
 	else if (conv_spec == '%')
 		cnt += flp_printf_percent();
 	return (cnt);

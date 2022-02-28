@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flp_printf_X.c                                     :+:      :+:    :+:   */
+/*   flp_printf_p.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/28 17:02:59 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/02/28 17:03:43 by fiaparec         ###   ########.fr       */
+/*   Created: 2022/02/28 17:11:31 by fiaparec          #+#    #+#             */
+/*   Updated: 2022/02/28 17:33:58 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "ft_printf.h"
 
-static int	flp_intlen_unsigned(unsigned int n)
+static int	flp_intlen_ul(unsigned long int n)
 {
 	int	len;
 
@@ -29,12 +29,12 @@ static int	flp_intlen_unsigned(unsigned int n)
 	return (len);
 }
 
-static char	*flp_itoX_unsigned(unsigned int n)
+static char	*flp_itox_ul(unsigned long int n)
 {
 	int		len;
 	char	*nptr;
 
-	len = flp_intlen_unsigned(n);
+	len = flp_intlen_ul(n);
 	nptr = (char *)malloc(sizeof(char) * (len + 1));
 	if (!nptr)
 		return (NULL);
@@ -47,20 +47,26 @@ static char	*flp_itoX_unsigned(unsigned int n)
 		if ((n % 16) < 10)
 			*(nptr + len) = n % 16 + '0';
 		else
-			*(nptr + len) = n % 16 + 55;
+			*(nptr + len) = n % 16 + 87;
 		n /= 16;
 	}
 	return (nptr);
 }
 
-int	flp_printf_X(unsigned int n)
+int	flp_printf_p(unsigned long int n)
 {
 	int		cnt;
 	char	*str;
 
+	if (n == 0)
+	{
+		ft_putstr_fd("(nil)", 1);
+		return (5);
+	}
 	cnt = 0;
-	str = flp_itoX_unsigned(n);
-	cnt = flp_printf_s(str);
+	str = flp_itox_ul(n);
+	cnt += flp_printf_s("0x");
+	cnt += flp_printf_s(str);
 	free(str);
 	return (cnt);
 }
