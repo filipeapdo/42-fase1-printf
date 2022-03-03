@@ -6,7 +6,7 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 08:01:45 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/03/03 07:46:32 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/03/03 19:09:39 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ typedef struct s_print
 	int		rtrn;
 	int		dash;
 	int		zero;
-	int		hash;
-	int		spce;
 	int		sign;
+	int		spce;
+	int		hash;
 	int		wdth;
 	int		prec;
 }	t_print;
@@ -46,10 +46,10 @@ int		flp_printf_uppx(unsigned int n);
 int		flp_printf_percent(void);
 
 // flags
-int		flp_pf_flag_dash(t_print *tab, const char *format, int pos);
-int		flp_pf_flag_zero(t_print *tab, const char *format, int pos);
-int		flp_pf_flag_wdth(t_print *tab, const char *format, int pos);
-int		flp_pf_flag_prec(t_print *tab, const char *format, int pos);
+int		flp_pf_flag(t_print *tab, const char *format, int pos, char flag);
+int		flp_pf_wdth_prec(t_print *tab, const char *format, int pos, char prec);
+// int		flp_pf_flag_wdth(t_print *tab, const char *format, int pos);
+// int		flp_pf_flag_prec(t_print *tab, const char *format, int pos);
 
 // utils
 char	*flp_utils_joinswap(char *s1, const char *s2);

@@ -17,54 +17,54 @@ int	main(int argc, char **argv)
 	printf("\n\n");
 
 	i = 0;
-	// // bonus %d
-	// printf("{{{ bonus %%d }}}\n");
-	// i = printf(" %d %d %d %d %d %d %d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
-	// printf("\n### i = %d\n\n", i);
-	// i = ft_printf(" %d %d %d %d %d %d %d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
-	// printf("\n### i = %d\n\n", i);
+	// bonus %d
+	printf("{{{ bonus %%d }}}\n");
+	i = printf(" %d %d %d %d %d %d %d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
+	printf("\n### i = %d\n\n", i);
+	i = ft_printf(" %d %d %d %d %d %d %d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
+	printf("\n### i = %d\n\n", i);
 	
-	// // bonus %-d
-	// printf("{{{ bonus %%-d }}}\n");
-	// i = printf(" %-d %-d %-d %-d %-d %-d %-d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
-	// printf("\n### i = %d\n\n", i);
-	// i = ft_printf(" %-d %-d %-d %-d %-d %-d %-d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
-	// printf("\n### i = %d\n\n", i);
+	// bonus %-d
+	printf("{{{ bonus %%-d }}}\n");
+	i = printf(" %-d %-d %-d %-d %-d %-d %-d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
+	printf("\n### i = %d\n\n", i);
+	i = ft_printf(" %-d %-d %-d %-d %-d %-d %-d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
+	printf("\n### i = %d\n\n", i);
 	
-	// // bonus %-'n'd
-	// printf("{{{ bonus %%-'n'd }}}\n");
-	// i = printf(" %-9d %-10d %-11d %-12d %-13d %-14d %-15d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
-	// printf("\n### i = %d\n\n", i);
-	// i = ft_printf(" %-9d %-10d %-11d %-12d %-13d %-14d %-15d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
-	// printf("\n### i = %d\n\n", i);
+	// bonus %-'n'd
+	printf("{{{ bonus %%-'n'd }}}\n");
+	i = printf(" %-9d %-10d %-11d %-12d %-13d %-14d %-15d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
+	printf("\n### i = %d\n\n", i);
+	i = ft_printf(" %-9d %-10d %-11d %-12d %-13d %-14d %-15d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
+	printf("\n### i = %d\n\n", i);
 	
-	// // bonus %0d
-	// printf("{{{ bonus %%0d }}}\n");
-	// i = printf(" %0d %0d %0d %0d %0d %0d %0d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
-	// printf("\n### i = %d\n\n", i);
-	// i = ft_printf(" %0d %0d %0d %0d %0d %0d %0d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
-	// printf("\n### i = %d\n\n", i);
+	// bonus %0d
+	printf("{{{ bonus %%0d }}}\n");
+	i = printf(" %0d %0d %0d %0d %0d %0d %0d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
+	printf("\n### i = %d\n\n", i);
+	i = ft_printf(" %0d %0d %0d %0d %0d %0d %0d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
+	printf("\n### i = %d\n\n", i);
 
-	// // bonus %0'n'd
-	// printf("{{{ bonus %%0'n'd }}}\n");
-	// i = printf(" %09d %010d %011d %012d %013d %014d %015d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
-	// printf("\n### i = %d\n\n", i);
-	// i = ft_printf(" %09d %010d %011d %012d %013d %014d %015d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
-	// printf("\n### i = %d\n\n", i);
+	// bonus %0'n'd
+	printf("{{{ bonus %%0'n'd }}}\n");
+	i = printf(" %09d %010d %011d %012d %013d %014d %015d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
+	printf("\n### i = %d\n\n", i);
+	i = ft_printf(" %09d %010d %011d %012d %013d %014d %015d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
+	printf("\n### i = %d\n\n", i);
 
-	// // bonus %0-0-00--'n'd
-	// printf("{{{ bonus %%0-0-00--'n'd }}}\n");
-	// i = printf(" %0-0----0000----0000009d %0-0----0000----00000010d %0-0----0000----00000011d %0-0----0000----00000012d %0-0----0000----00000013d %0-0----0000----00000014d %0-0----0000----00000015d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
-	// printf("\n### i = %d\n\n", i);
-	// i = ft_printf(" %0-0----0000----0000009d %0-0----0000----00000010d %0-0----0000----00000011d %0-0----0000----00000012d %0-0----0000----00000013d %0-0----0000----00000014d %0-0----0000----00000015d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
-	// printf("\n### i = %d\n\n", i);
+	// bonus %0-0-00--'n'd
+	printf("{{{ bonus %%0-0-00--'n'd }}}\n");
+	i = printf(" %0-0----0000----0000009d %0-0----0000----00000010d %0-0----0000----00000011d %0-0----0000----00000012d %0-0----0000----00000013d %0-0----0000----00000014d %0-0----0000----00000015d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
+	printf("\n### i = %d\n\n", i);
+	i = ft_printf(" %0-0----0000----0000009d %0-0----0000----00000010d %0-0----0000----00000011d %0-0----0000----00000012d %0-0----0000----00000013d %0-0----0000----00000014d %0-0----0000----00000015d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
+	printf("\n### i = %d\n\n", i);
 	
-	// // bonus %'n'd
-	// printf("{{{ bonus %%'n'[wdth]d }}}\n");
-	// i = printf(" %9d %10d %11d %12d %13d %14d %15d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
-	// printf("\n### i = %d\n\n", i);
-	// i = ft_printf(" %9d %10d %11d %12d %13d %14d %15d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
-	// printf("\n### i = %d\n\n", i);
+	// bonus %'n'd
+	printf("{{{ bonus %%'n'[wdth]d }}}\n");
+	i = printf(" %9d %10d %11d %12d %13d %14d %15d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
+	printf("\n### i = %d\n\n", i);
+	i = ft_printf(" %9d %10d %11d %12d %13d %14d %15d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
+	printf("\n### i = %d\n\n", i);
 
 	// bonus %.'n'd
 	printf("{{{ bonus %%.'n'd }}}\n");
