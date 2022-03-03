@@ -6,7 +6,7 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 08:01:56 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/03/01 15:27:45 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/03/02 20:15:32 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
 
 static int	flp_eval_format(t_print *tab, const char *format, int pos)
 {
-	static char	*conv_allowed_1 = "cspdiuxX\%";
+	static char	*conv_allowed = "cspdiuxX\%";
+	static char	*width_allowed = "123456789";
 
-	while (!ft_strchr(conv_allowed_1, *(format + pos)))
+	while (!ft_strchr(conv_allowed, *(format + pos)))
 	{
 		if (*(format + pos) == '-')
 			pos = flp_pf_flag_dash(tab, format, pos);
@@ -27,6 +28,8 @@ static int	flp_eval_format(t_print *tab, const char *format, int pos)
 			tab->zero = 1;
 			pos++;
 		}
+		if (ft_strchr(width_allowed, *(format + pos)))
+			pos = flp_pf_flag_wdth(tab, format, pos);
 		if (*(format + pos) == '.')
 		{
 			tab->prec = 1;
