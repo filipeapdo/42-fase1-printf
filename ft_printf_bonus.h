@@ -6,7 +6,7 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 08:01:45 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/03/01 17:08:37 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/03/03 07:46:32 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,9 @@ int		flp_printf_percent(void);
 
 // flags
 int		flp_pf_flag_dash(t_print *tab, const char *format, int pos);
-int	flp_pf_flag_wdth(t_print *tab, const char *format, int pos);
+int		flp_pf_flag_zero(t_print *tab, const char *format, int pos);
+int		flp_pf_flag_wdth(t_print *tab, const char *format, int pos);
+int		flp_pf_flag_prec(t_print *tab, const char *format, int pos);
 
 // utils
 char	*flp_utils_joinswap(char *s1, const char *s2);
