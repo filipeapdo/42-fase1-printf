@@ -6,7 +6,7 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 15:05:29 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/03/04 06:55:41 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/03/04 07:26:52 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	flp_printf_d(t_print *tab, int n)
 	str = ft_itoa(n);
 	sign = *str;
 	if (sign == '-' || sign == '+')
-		str = flp_utils_substrswap(str);
+		str = flp_pf_utils_substrswap(str, 1, ft_strlen(str));
 	str = flp_pf_prec_handler(tab, str);
 	if (tab->dash)
 		str = flp_pf_dash_handler(tab, str, sign);

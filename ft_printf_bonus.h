@@ -6,7 +6,7 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 08:01:45 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/03/04 06:54:35 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/03/04 07:33:43 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,7 @@ char	*flp_pf_zero_handler(t_print *tab, char *s, char sign);
 char	*flp_pf_wdth_handler(t_print *tab, char *s, char sign);
 
 // utils
-char	*flp_utils_joinswap(char *s1, const char *s2);
-char	*flp_utils_joinswap_reverse(const char *s1, char *s2);
-char	*flp_utils_substrswap (char *s);
+char	*flp_pf_utils_joinswap(char *s1, char *s2, int	reverse);
+char	*flp_pf_utils_substrswap (char *s, int start, int len);
 
 #endif
