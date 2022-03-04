@@ -6,14 +6,14 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 10:50:15 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/02/28 16:25:32 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/03/03 19:45:22 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
-int	flp_printf_s(char *s)
+int	flp_printf_s(t_print *tab, char *s)
 {
 	if (!s)
 	{
@@ -21,5 +21,6 @@ int	flp_printf_s(char *s)
 		return (6);
 	}
 	ft_putstr_fd(s, 1);
-	return (ft_strlen(s));
+	tab->rtrn += ft_strlen(s);
+	return (tab->rtrn);
 }

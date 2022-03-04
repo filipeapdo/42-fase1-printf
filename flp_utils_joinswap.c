@@ -6,7 +6,7 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 15:34:11 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/03/01 17:09:03 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/03/04 06:10:43 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,13 @@ char	*flp_utils_joinswap_reverse(const char *s1, char *s2)
 	*(s_join + j) = '\0';
 	free(s2);
 	return (s_join);
+}
+
+char	*flp_utils_substrswap (char *s)
+{
+	char	*s_substr;
+
+	s_substr = ft_substr(s, 1, ft_strlen(s));
+	free(s);
+	return (s_substr);
 }

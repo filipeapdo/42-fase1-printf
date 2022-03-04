@@ -6,7 +6,7 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 08:01:56 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/03/03 19:10:33 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/03/03 20:03:52 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,29 @@
 #include "libft/libft.h"
 #include "ft_printf_bonus.h"
 
-static int	flp_eval_format(t_print *tab, const char *format, int pos)
+static void	flp_pf_conv_hand(t_print *tab, const char *format, int pos)
+{
+	if (*(format + pos) == 'c')
+		flp_printf_c(tab, (char)va_arg(tab->args, int));
+	else if (*(format + pos) == 's')
+		flp_printf_s(tab, va_arg(tab->args, char *));
+	else if (*(format + pos) == 'p')
+		tab->rtrn = flp_printf_p(va_arg(tab->args, unsigned long int));
+	else if (*(format + pos) == 'd')
+		flp_printf_d(tab, va_arg(tab->args, int));
+	else if (*(format + pos) == 'i')
+		tab->rtrn = flp_printf_i(va_arg(tab->args, int));
+	else if (*(format + pos) == 'u')
+		tab->rtrn = flp_printf_u(va_arg(tab->args, unsigned int));
+	else if (*(format + pos) == 'x')
+		tab->rtrn = flp_printf_x(va_arg(tab->args, unsigned int));
+	else if (*(format + pos) == 'X')
+		tab->rtrn = flp_printf_uppx(va_arg(tab->args, unsigned int));
+	else if (*(format + pos) == '%')
+		tab->rtrn = flp_printf_percent();
+}
+
+static int	flp_pf_eval_format(t_print *tab, const char *format, int pos)
 {
 	while (!ft_strchr("cspdiuxX\%", *(format + pos)))
 	{
@@ -25,11 +47,11 @@ static int	flp_eval_format(t_print *tab, const char *format, int pos)
 		if (*(format + pos) == '.')
 			pos = flp_pf_wdth_prec(tab, format, pos + 1, *(format + pos));
 	}
-	pos += flp_pf_conv_hand(tab, format, pos);
+	flp_pf_conv_hand(tab, format, pos++);
 	return (pos);
 }
 
-static t_print	*flp_init_sprint(t_print *tab)
+static t_print	*flp_pf_init_tab(t_print *tab)
 {
 	tab->rtrn = 0;
 	tab->dash = 0;
@@ -51,14 +73,14 @@ int	ft_printf(const char *format, ...)
 	tab = (t_print *)malloc(sizeof(t_print));
 	if (!tab)
 		return (-1);
-	flp_init_sprint(tab);
+	flp_pf_init_tab(tab);
 	va_start(tab->args, format);
 	i = 0;
 	rtrn = 0;
 	while (*(format + i))
 	{
 		if (*(format + i) == '%')
-			i = flp_eval_format(tab, format, i + 1);
+			i = flp_pf_eval_format(tab, format, i + 1);
 		else
 		{
 			ft_putchar_fd(*(format + i++), 1);

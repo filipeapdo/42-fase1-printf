@@ -6,7 +6,7 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 08:01:45 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/03/03 19:09:39 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/03/04 06:54:35 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,9 @@ typedef struct s_print
 // ft_printf main function
 int		ft_printf(const char *format, ...);
 
-// conversion handler
-int		flp_pf_conv_hand(t_print *tab, const char *format, int pos);
-
 // conversions
 int		flp_printf_c(t_print *tab, char c);
-int		flp_printf_s(char *s);
+int		flp_printf_s(t_print *tab, char *s);
 int		flp_printf_p(unsigned long int n);
 int		flp_printf_d(t_print *tab, int n);
 int		flp_printf_i(int n);
@@ -45,14 +42,19 @@ int		flp_printf_x(unsigned int n);
 int		flp_printf_uppx(unsigned int n);
 int		flp_printf_percent(void);
 
-// flags
+// flags, wdth, prec identifier
 int		flp_pf_flag(t_print *tab, const char *format, int pos, char flag);
 int		flp_pf_wdth_prec(t_print *tab, const char *format, int pos, char prec);
-// int		flp_pf_flag_wdth(t_print *tab, const char *format, int pos);
-// int		flp_pf_flag_prec(t_print *tab, const char *format, int pos);
+
+// flags, wdth, prec handler
+char	*flp_pf_prec_handler(t_print *tab, char *s);
+char	*flp_pf_dash_handler(t_print *tab, char *s, char sign);
+char	*flp_pf_zero_handler(t_print *tab, char *s, char sign);
+char	*flp_pf_wdth_handler(t_print *tab, char *s, char sign);
 
 // utils
 char	*flp_utils_joinswap(char *s1, const char *s2);
 char	*flp_utils_joinswap_reverse(const char *s1, char *s2);
+char	*flp_utils_substrswap (char *s);
 
 #endif
