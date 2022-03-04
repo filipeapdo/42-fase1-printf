@@ -6,7 +6,7 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 07:45:53 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/03/03 20:03:53 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/03/04 13:55:10 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft/libft.h"
 #include "ft_printf_bonus.h"
 
-int	flp_pf_flag(t_print *tab, const char *format, int pos, char flag)
+int	flp_pf_flag_identifier(t_print *tab, const char *format, int pos, char flag)
 {
 	if (flag == '-')
 		tab->dash = 1;
@@ -33,7 +33,8 @@ int	flp_pf_flag(t_print *tab, const char *format, int pos, char flag)
 	return (pos);
 }
 
-int	flp_pf_wdth_prec(t_print *tab, const char *format, int pos, char prec)
+int	flp_pf_wdth_prec_identifier(t_print *tab, const char *format,
+		int pos, char prec)
 {
 	char	*str;
 	int		length;

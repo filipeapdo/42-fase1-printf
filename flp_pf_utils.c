@@ -6,7 +6,7 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 15:34:11 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/03/04 07:33:32 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/03/04 14:03:34 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include "libft/libft.h"
 #include "ft_printf_bonus.h"
 
-char	*flp_pf_utils_joinswap(char *s1, char *s2, int	reverse)
+char	*flp_pf_utils_joinswap(char *s1, char *s2, int reverse)
 {
-	char *s_join;
+	char	*s_join;
 
 	if (!s1 && !s2)
 		return (NULL);
@@ -36,7 +36,7 @@ char	*flp_pf_utils_joinswap(char *s1, char *s2, int	reverse)
 	return (s_join);
 }
 
-char	*flp_pf_utils_substrswap (char *s, int start, int len)
+char	*flp_pf_utils_substrswap(char *s, int start, int len)
 {
 	char	*s_substr;
 

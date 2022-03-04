@@ -6,7 +6,7 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 06:18:32 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/03/04 07:30:31 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/03/04 15:46:21 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,12 @@ char	*flp_pf_dash_handler(t_print *tab, char *s, char sign)
 	char	*str_dash;
 
 	str_dash = ft_strdup(s);
-	if (sign == '-')
-		str_dash = flp_pf_utils_joinswap("-", str_dash, 1);
-	else if (sign == '+')
-		str_dash = flp_pf_utils_joinswap("+", str_dash, 1);
+	// if (sign == '-')
+	// 	str_dash = flp_pf_utils_joinswap("-", str_dash, 1);
+	// else if (sign == '+')
+	// 	str_dash = flp_pf_utils_joinswap("+", str_dash, 1);
+	if (tab->wdth > 0 && (sign == '-' || sign == '+' || tab->spce))
+		tab->wdth--;
 	while (ft_strlen(str_dash) < (size_t)tab->wdth)
 		str_dash = flp_pf_utils_joinswap(str_dash, " ", 0);
 	free(s);
@@ -48,23 +50,49 @@ char	*flp_pf_zero_handler(t_print *tab, char *s, char sign)
 		tab->wdth--;
 	while (ft_strlen(str_zero) < (size_t)tab->wdth)
 		str_zero = flp_pf_utils_joinswap("0", str_zero, 1);
-	if (sign == '-')
-		str_zero = flp_pf_utils_joinswap("-", str_zero, 1);
-	else if (sign == '+')
-		str_zero = flp_pf_utils_joinswap("+", str_zero, 1);
+	// if (sign == '-')
+	// 	str_zero = flp_pf_utils_joinswap("-", str_zero, 1);
+	// else if (sign == '+')
+	// 	str_zero = flp_pf_utils_joinswap("+", str_zero, 1);
 	free(s);
 	return (str_zero);
 }
 
-char	*flp_pf_wdth_handler(t_print *tab, char *s, char sign)
+char	*flp_pf_sign_handler(char *s, char sign)
+{
+	char	*str_sign;
+
+	str_sign = ft_strdup(s);
+	if (sign == '-')
+		str_sign = flp_pf_utils_joinswap("-", str_sign, 1);
+	else if (sign == '+')
+		str_sign = flp_pf_utils_joinswap("+", str_sign, 1);
+	else
+		return (NULL);
+	free(s);
+	return (str_sign);
+}
+
+char	*flp_pf_spce_handler(char *s, char sign)
+{
+	char	*str_spce;
+
+	str_spce = ft_strdup(s);
+	if (sign != '-')
+		str_spce = flp_pf_utils_joinswap(" ", str_spce, 1);
+	free(s);
+	return (str_spce);
+}
+
+char	*flp_pf_wdth_handler(t_print *tab, char *s)
 {
 	char	*str_wdth;
 
 	str_wdth = ft_strdup(s);
-	if (sign == '-')
-		str_wdth = flp_pf_utils_joinswap("-", str_wdth, 1);
-	else if (sign == '+')
-		str_wdth = flp_pf_utils_joinswap("+", str_wdth, 1);
+	// if (sign == '-')
+	// 	str_wdth = flp_pf_utils_joinswap("-", str_wdth, 1);
+	// else if (sign == '+')
+	// 	str_wdth = flp_pf_utils_joinswap("+", str_wdth, 1);
 	while (ft_strlen(str_wdth) < (size_t)tab->wdth)
 		str_wdth = flp_pf_utils_joinswap(" ", str_wdth, 1);
 	free(s);

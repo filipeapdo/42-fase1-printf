@@ -6,7 +6,7 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 08:01:56 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/03/03 20:03:52 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/03/04 13:59:53 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft/libft.h"
 #include "ft_printf_bonus.h"
 
-static void	flp_pf_conv_hand(t_print *tab, const char *format, int pos)
+static void	flp_pf_conv_handler(t_print *tab, const char *format, int pos)
 {
 	if (*(format + pos) == 'c')
 		flp_printf_c(tab, (char)va_arg(tab->args, int));
@@ -36,18 +36,20 @@ static void	flp_pf_conv_hand(t_print *tab, const char *format, int pos)
 		tab->rtrn = flp_printf_percent();
 }
 
-static int	flp_pf_eval_format(t_print *tab, const char *format, int pos)
+static int	flp_pf_format_eval(t_print *tab, const char *format, int pos)
 {
 	while (!ft_strchr("cspdiuxX\%", *(format + pos)))
 	{
 		if (ft_strchr("-0+ #", *(format + pos)))
-			pos = flp_pf_flag(tab, format, pos, *(format + pos));
+			pos = flp_pf_flag_identifier(tab, format, pos, *(format + pos));
 		if (ft_strchr("123456789", *(format + pos)))
-			pos = flp_pf_wdth_prec(tab, format, pos, *(format + pos));
+			pos = flp_pf_wdth_prec_identifier(tab, format,
+					pos, *(format + pos));
 		if (*(format + pos) == '.')
-			pos = flp_pf_wdth_prec(tab, format, pos + 1, *(format + pos));
+			pos = flp_pf_wdth_prec_identifier(tab, format,
+					pos + 1, *(format + pos));
 	}
-	flp_pf_conv_hand(tab, format, pos++);
+	flp_pf_conv_handler(tab, format, pos++);
 	return (pos);
 }
 
@@ -80,7 +82,7 @@ int	ft_printf(const char *format, ...)
 	while (*(format + i))
 	{
 		if (*(format + i) == '%')
-			i = flp_pf_eval_format(tab, format, i + 1);
+			i = flp_pf_format_eval(tab, format, i + 1);
 		else
 		{
 			ft_putchar_fd(*(format + i++), 1);
