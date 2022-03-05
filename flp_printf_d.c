@@ -6,7 +6,7 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 15:05:29 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/03/04 15:37:52 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/03/05 10:11:24 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,15 @@ int	flp_printf_d(t_print *tab, int n)
 	char	*str;
 	char	sign;
 
-	str = ft_itoa(n);
+	// printf("\n\ntab->prec:%d\n", tab->prec);
+	// printf("tab->wdth:%d\n\n", tab->wdth);
+
+	if (tab->prec == -1)
+		tab->prec = 1;
+	if (n == 0 && tab->prec == 0)
+		str = ft_strdup("");
+	else
+		str = ft_itoa(n);
 	if (*str == '-')
 		sign = '-';
 	else if (tab->sign)
@@ -31,7 +39,7 @@ int	flp_printf_d(t_print *tab, int n)
 	str = flp_pf_prec_handler(tab, str);
 	if (tab->dash)
 		str = flp_pf_dash_handler(tab, str, sign);
-	if (tab->zero && !tab->dash && !tab->prec)
+	if (tab->zero && !tab->dash && tab->prec == 1)
 		str = flp_pf_zero_handler(tab, str, sign);
 	if (sign)
 		str = flp_pf_sign_handler(str, sign);

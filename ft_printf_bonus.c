@@ -6,7 +6,7 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 08:01:56 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/03/04 13:59:53 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/03/05 10:59:02 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,13 @@ static void	flp_pf_conv_handler(t_print *tab, const char *format, int pos)
 
 static int	flp_pf_format_eval(t_print *tab, const char *format, int pos)
 {
+	if (!ft_strchr("-0+ #123456789.cspdiuxX", *(format + pos)))
+	{
+		// flp_printf_c(tab, '%');
+		// flp_printf_c(tab, *(format + pos));
+		// return (++pos);
+		return (++pos);
+	}
 	while (!ft_strchr("cspdiuxX\%", *(format + pos)))
 	{
 		if (ft_strchr("-0+ #", *(format + pos)))
@@ -62,7 +69,7 @@ static t_print	*flp_pf_init_tab(t_print *tab)
 	tab->spce = 0;
 	tab->hash = 0;
 	tab->wdth = 0;
-	tab->prec = 0;
+	tab->prec = -1;
 	return (tab);
 }
 
@@ -81,7 +88,9 @@ int	ft_printf(const char *format, ...)
 	rtrn = 0;
 	while (*(format + i))
 	{
-		if (*(format + i) == '%')
+		if (*(format + i) == '%' && ((size_t)i + 1) == ft_strlen(format))
+			return (-1);
+		else if (*(format + i) == '%' && ((size_t)i + 1) < ft_strlen(format))
 			i = flp_pf_format_eval(tab, format, i + 1);
 		else
 		{

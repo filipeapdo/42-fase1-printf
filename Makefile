@@ -6,7 +6,7 @@
 #    By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/25 08:38:39 by fiaparec          #+#    #+#              #
-#    Updated: 2022/03/01 10:53:32 by fiaparec         ###   ########.fr        #
+#    Updated: 2022/03/05 11:04:51 by fiaparec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,8 +62,8 @@ fclean:			clean
 
 re:				fclean all
 
-test:			
-				$(CC) test.c $(LIBFTPF_LINK) -o test.out
+test_b:			bonus
+				$(CC) test_b.c $(LIBFTPF_LINK) -o test.out
 				$(TEST)
 
 
