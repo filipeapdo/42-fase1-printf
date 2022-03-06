@@ -6,7 +6,7 @@
 #    By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/25 08:38:39 by fiaparec          #+#    #+#              #
-#    Updated: 2022/03/06 18:02:28 by fiaparec         ###   ########.fr        #
+#    Updated: 2022/03/06 18:21:32 by fiaparec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,16 @@ re:				fclean all
 
 # tests
 
-a:				test_d test_i
+test:			bonus
+				@$(CC) test.c $(LIBFTPF_LINK) -o test.out && ./test.out
+
+a:				test_c test_d test_i
+
+test_c:			bonus
+				@$(CC) test_c_expected.c -o test.out && ./test.out > expected.log
+				@$(CC) test_c_result.c $(LIBFTPF_LINK) -o test.out && ./test.out > result.log
+				@echo -e -n "\n[test_c] ::: "
+				@sh test.sh
 
 test_d:			bonus
 				@$(CC) test_d_expected.c -o test.out && ./test.out > expected.log
