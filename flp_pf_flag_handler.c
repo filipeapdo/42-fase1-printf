@@ -6,67 +6,44 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 07:04:02 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/03/06 07:19:48 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/03/06 17:26:16 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "ft_printf_bonus.h"
 
-char	*flp_pf_dash_handler(t_print *tab, char *s, char sign)
+char	*flp_pf_dash_zero_handler(t_print *tab, char *s, char *fill)
 {
-	char	*str_dash;
+	char	*str_dash_zero;
 
-	str_dash = ft_strdup(s);
-	if (tab->wdth > 0 && (sign == '-' || sign == '+' || tab->spce))
+	str_dash_zero = ft_strdup(s);
+	if ((tab->sign || tab->spce) && tab->wdth > 0)
 		tab->wdth -= 1;
-	if (tab->wdth > 0 && tab->hash)
+	if (tab->hash && tab->wdth > 0)
 		tab->wdth -= 2;
-	while (ft_strlen(str_dash) < (size_t)tab->wdth)
-		str_dash = flp_pf_utils_joinswap(str_dash, " ", 0);
+	if (tab->dash)
+		while (ft_strlen(str_dash_zero) < (size_t)tab->wdth)
+			str_dash_zero = flp_pf_utils_joinswap(str_dash_zero, " ", 0);
+	else if (tab->zero)
+		while (ft_strlen(str_dash_zero) < (size_t)tab->wdth)
+			str_dash_zero = flp_pf_utils_joinswap(fill, str_dash_zero, 1);
 	free(s);
-	return (str_dash);
+	return (str_dash_zero);
 }
 
-char	*flp_pf_zero_handler(t_print *tab, char *s, char sign, char *fill)
+char	*flp_pf_sign_spce_handler(t_print *tab, char *s)
 {
-	char	*str_zero;
+	char	*str_sign_spce;
 
-	str_zero = ft_strdup(s);
-	if (tab->wdth > 0 && (sign == '-' || sign == '+' || tab->spce))
-		tab->wdth -= 1;
-	if (tab->wdth > 0 && tab->hash)
-		tab->wdth -= 2;
-	while (ft_strlen(str_zero) < (size_t)tab->wdth)
-		str_zero = flp_pf_utils_joinswap(fill, str_zero, 1);
+	str_sign_spce = ft_strdup(s);
+	if (tab->sign == (int)'-')
+		str_sign_spce = flp_pf_utils_joinswap("-", str_sign_spce, 1);
+	else if (tab->sign == (int)'+')
+		str_sign_spce = flp_pf_utils_joinswap("+", str_sign_spce, 1);
+	else if (tab->spce)
+		str_sign_spce = flp_pf_utils_joinswap(" ", str_sign_spce, 1);
 	free(s);
-	return (str_zero);
-}
-
-char	*flp_pf_sign_handler(char *s, char sign)
-{
-	char	*str_sign;
-
-	str_sign = ft_strdup(s);
-	if (sign == '-')
-		str_sign = flp_pf_utils_joinswap("-", str_sign, 1);
-	else if (sign == '+')
-		str_sign = flp_pf_utils_joinswap("+", str_sign, 1);
-	else
-		return (NULL);
-	free(s);
-	return (str_sign);
-}
-
-char	*flp_pf_spce_handler(char *s, char sign)
-{
-	char	*str_spce;
-
-	str_spce = ft_strdup(s);
-	if (sign != '-')
-		str_spce = flp_pf_utils_joinswap(" ", str_spce, 1);
-	free(s);
-	return (str_spce);
+	return (str_sign_spce);
 }
 
 char	*flp_pf_hash_handler(char *s, char x)

@@ -6,12 +6,10 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 15:34:11 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/03/04 14:03:34 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/03/06 17:25:09 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "libft/libft.h"
 #include "ft_printf_bonus.h"
 
 char	*flp_pf_utils_joinswap(char *s1, char *s2, int reverse)

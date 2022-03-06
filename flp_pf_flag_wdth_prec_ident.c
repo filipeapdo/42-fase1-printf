@@ -1,17 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flp_pf_flag_wdth_prec.c                            :+:      :+:    :+:   */
+/*   flp_pf_flag_wdth_prec_ident.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 07:45:53 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/03/05 10:13:24 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/03/06 17:26:20 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "libft/libft.h"
 #include "ft_printf_bonus.h"
 
 int	flp_pf_flag_identifier(t_print *tab, const char *format,
