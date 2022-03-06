@@ -6,7 +6,7 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 15:05:29 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/03/06 17:12:40 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/03/06 17:46:51 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 static void	flp_printf_d_aux(t_print *tab, char *str)
 {
 	if (*str == '-')
-		tab->sign = (int)'-';
+		tab->sign = (int) '-';
 	else if (tab->sign == 1)
-		tab->sign = (int)'+';
+		tab->sign = (int) '+';
 	if (tab->prec == -1)
 		tab->prec = 1;
 }
@@ -29,7 +29,7 @@ int	flp_printf_d(t_print *tab, int n)
 	if (n == 0 && tab->prec == 0)
 		str = ft_strdup("");
 	else
-	{ 
+	{
 		str = ft_itoa(n);
 		flp_printf_d_aux(tab, str);
 	}
