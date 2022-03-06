@@ -6,7 +6,7 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 08:01:45 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/03/06 07:20:14 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/03/06 17:22:54 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_PRINTF_BONUS_H
 
 # include <stdarg.h>
+# include "libft/libft.h"
 
 typedef struct s_print
 {
@@ -38,11 +39,10 @@ int		flp_pf_wdth_prec_identifier(t_print *tab, const char *format,
 			int pos, char prec);
 
 // flags handler
-char	*flp_pf_dash_handler(t_print *tab, char *s, char sign);
-char	*flp_pf_zero_handler(t_print *tab, char *s, char sign, char *fill);
-char	*flp_pf_sign_handler(char *s, char sign);
-char	*flp_pf_spce_handler(char *s, char sign);
+char	*flp_pf_dash_zero_handler(t_print *tab, char *s, char *fill);
+char	*flp_pf_sign_spce_handler(t_print *tab, char *s);
 char	*flp_pf_hash_handler(char *s, char x);
+
 // wdth, prec handler
 char	*flp_pf_prec_handler(t_print *tab, char *s);
 char	*flp_pf_wdth_handler(t_print *tab, char *s);
