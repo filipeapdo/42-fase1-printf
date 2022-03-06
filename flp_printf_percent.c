@@ -6,12 +6,11 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 10:27:48 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/02/28 15:05:21 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/03/06 17:13:54 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
 int	flp_printf_percent(void)
 {

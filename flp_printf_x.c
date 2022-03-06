@@ -6,12 +6,11 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 16:24:33 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/02/28 18:07:14 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/03/06 17:15:23 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
 static int	flp_intlen_u(unsigned int n)
 {
