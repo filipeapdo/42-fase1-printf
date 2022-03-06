@@ -6,7 +6,7 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:30:52 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/02/28 17:30:33 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/03/06 17:07:59 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_PRINTF_H
 
 # include <stdarg.h>
+# include "libft/libft.h"
 
 int	ft_printf(const char *format, ...);
 int	flp_printf_c(char c);
