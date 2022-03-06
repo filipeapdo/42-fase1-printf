@@ -6,20 +6,40 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 15:22:27 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/03/06 17:13:24 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/03/06 17:50:18 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-int	flp_printf_i(int n)
+static void	flp_printf_i_aux(t_print *tab, char *str)
 {
-	int		cnt;
+	if (*str == '-')
+		tab->sign = (int) '-';
+	else if (tab->sign == 1)
+		tab->sign = (int) '+';
+	if (tab->prec == -1)
+		tab->prec = 1;
+}
+
+int	flp_printf_i(t_print *tab, int n)
+{
 	char	*str;
 
-	cnt = 0;
-	str = ft_itoa(n);
-	cnt = flp_printf_s(str);
+	if (n == 0 && tab->prec == 0)
+		str = ft_strdup("");
+	else
+	{
+		str = ft_itoa(n);
+		flp_printf_i_aux(tab, str);
+	}
+	str = flp_pf_prec_handler(tab, str);
+	if (tab->dash || (tab->zero && tab->prec == 1))
+		str = flp_pf_dash_zero_handler(tab, str, "0");
+	if (tab->sign || tab->spce)
+		str = flp_pf_sign_spce_handler(tab, str);
+	str = flp_pf_wdth_handler(tab, str);
+	flp_printf_s(tab, str);
 	free(str);
-	return (cnt);
+	return (tab->rtrn);
 }

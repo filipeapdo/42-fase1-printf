@@ -6,7 +6,7 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 08:01:45 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/03/06 17:22:54 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/03/06 17:50:41 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int		flp_printf_c(t_print *tab, char c);
 int		flp_printf_s(t_print *tab, char *s);
 int		flp_printf_p(unsigned long int n);
 int		flp_printf_d(t_print *tab, int n);
-int		flp_printf_i(int n);
+int		flp_printf_i(t_print *tab, int n);
 int		flp_printf_u(unsigned int n);
 int		flp_printf_x(unsigned int n);
 int		flp_printf_uppx(unsigned int n);
