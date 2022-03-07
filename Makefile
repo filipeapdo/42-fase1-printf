@@ -6,7 +6,7 @@
 #    By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/25 08:38:39 by fiaparec          #+#    #+#              #
-#    Updated: 2022/03/07 07:19:45 by fiaparec         ###   ########.fr        #
+#    Updated: 2022/03/07 20:37:59 by fiaparec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ RM				= rm -f
 SRCS_BONUS		= ft_printf_bonus.c \
 					flp_pf_flag_wdth_prec_ident.c \
 					flp_pf_flag_handler.c flp_pf_wdth_prec_handler.c \
-					flp_pf_utils.c \
+					flp_pf_utils_swap.c flp_pf_utils_itoa.c\
 					flp_printf_c.c flp_printf_s.c \
 					flp_printf_d.c flp_printf_i.c
 
