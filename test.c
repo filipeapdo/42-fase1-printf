@@ -10,15 +10,82 @@ int	main(int argc, char **argv)
 	i = 0;
 	j = 0;
 	
-	// TEST(1, print("%c", '0'));
-	// TEST(2, print(" %c ", '0'));
-	// TEST(3, print(" %c", '0' - 256));
-	// TEST(4, print("%c ", '0' + 256));
-	// TEST(5, print(" %c %c %c ", '0', 0, '1'));
-	// TEST(6, print(" %c %c %c ", ' ', ' ', ' '));
-	// TEST(7, print(" %c %c %c ", '1', '2', '3'));
-	// TEST(8, print(" %c %c %c ", '2', '1', 0));
-	// TEST(9, print(" %c %c %c ", 0, '1', '2'));
+	// TEST(1, print("%.s", ""));
+	// TEST(2, print(" %.1s", ""));
+	// TEST(3, print("%.1s ", ""));
+	// TEST(4, print(" %.s ", ""));
+	// TEST(5, print(" %.s ", "-"));
+	// TEST(6, print(" %.2s %.1s ", "", "-"));
+	// TEST(7, print(" %.3s %.2s ", " - ", ""));
+	// TEST(8, print(" %.1s %.2s %.3s %.4s ", " - ", "", "4", ""));
+	// TEST(9, print(" %.2s %.3s %.4s %.5s %.1s ", " - ", "", "4", "", "2 "));
+	// TEST(10, print(" NULL %s NULL ", NULL));
+	
+	printf("{{{ bonus %%.0s, 0 }}}\n");
+	i = printf("%.0s", 0);
+	printf("\n");
+	j = ft_printf("%.0s", 0);
+	printf("\n%d = %d\n\n", i, j);
+	
+	printf("{{{ bonus %%s == NULL }}}\n");
+	i = printf(" NULL %s NULL ", NULL);
+	printf("\n");
+	j = ft_printf(" NULL %s NULL ", NULL);
+	printf("\n%d = %d\n\n", i, j);
+	
+	printf("{{{ bonus %%s }}}\n");
+	i = printf("|%s|;|%s|;|%s|;|%s|;|%s|;", "abc", "123", "", "   ", "qwertyuiop");
+	printf("\n");
+	j = ft_printf("|%s|;|%s|;|%s|;|%s|;|%s|;", "abc", "123", "", "   ", "qwertyuiop");
+	printf("\n%d = %d\n\n", i, j);
+
+	printf("{{{ bonus %%.s }}}\n");
+	i = printf("|%.s|;|%.s|;|%.s|;|%.s|;|%.s|;", "abc", "123", "", "   ", "qwertyuiop");
+	printf("\n");
+	j = ft_printf("|%.s|;|%.s|;|%.s|;|%.s|;|%.s|;", "abc", "123", "", "   ", "qwertyuiop");
+	printf("\n%d = %d\n\n", i, j);
+
+	printf("{{{ bonus %%.'n's }}}\n");
+	i = printf("|%.100s|;|%.2s|;|%.3s|;|%.4s|;|%.700s|;", "abc", "123", "", "   ", "qwertyuiop");
+	printf("\n");
+	j = ft_printf("|%.100s|;|%.2s|;|%.3s|;|%.4s|;|%.700s|;", "abc", "123", "", "   ", "qwertyuiop");
+	printf("\n%d = %d\n\n", i, j);
+
+	printf("{{{ bonus %%-'n's }}}\n");
+	i = printf("|%-10s|;|%-11s|;|%-12s|;|%-13s|;|%-14s|;", "abc", "123", "", "   ", "qwertyuiop");
+	printf("\n");
+	j = ft_printf("|%-10s|;|%-11s|;|%-12s|;|%-13s|;|%-14s|;", "abc", "123", "", "   ", "qwertyuiop");
+	printf("\n%d = %d\n\n", i, j);
+
+	printf("{{{ bonus %%0'n's }}}\n");
+	i = printf("|%010s|;|%011s|;|%012s|;|%013s|;|%014s|;", "abc", "123", "", "   ", "qwertyuiop");
+	printf("\n");
+	j = ft_printf("|%010s|;|%011s|;|%012s|;|%013s|;|%014s|;", "abc", "123", "", "   ", "qwertyuiop");
+	printf("\n%d = %d\n\n", i, j);
+
+	printf("{{{ bonus %%+'n's }}}\n");
+	i = printf("|%+10s|;|%+11s|;|%+12s|;|%+13s|;|%+14s|;", "abc", "123", "", "   ", "qwertyuiop");
+	printf("\n");
+	j = ft_printf("|%+10s|;|%+11s|;|%+12s|;|%+13s|;|%+14s|;", "abc", "123", "", "   ", "qwertyuiop");
+	printf("\n%d = %d\n\n", i, j);
+
+	printf("{{{ bonus %% 'n's }}}\n");
+	i = printf("|% 10s|;|% 11s|;|% 12s|;|% 13s|;|% 14s|;", "abc", "123", "", "   ", "qwertyuiop");
+	printf("\n");
+	j = ft_printf("|% 10s|;|% 11s|;|% 12s|;|% 13s|;|% 14s|;", "abc", "123", "", "   ", "qwertyuiop");
+	printf("\n%d = %d\n\n", i, j);
+
+	printf("{{{ bonus %%#'n's }}}\n");
+	i = printf("|%#10s|;|%#11s|;|%#12s|;|%#13s|;|%#14s|;", "abc", "123", "", "   ", "qwertyuiop");
+	printf("\n");
+	j = ft_printf("|%#10s|;|%#11s|;|%#12s|;|%#13s|;|%#14s|;", "abc", "123", "", "   ", "qwertyuiop");
+	printf("\n%d = %d\n\n", i, j);
+
+	printf("{{{ bonus %% CRAZY }}}\n");
+	i = printf("|%#-0 +++###-----      100.10s|;|%#-0 +++###-----      100.11s|;|%#-0 +++###-----      100.12s|;|%#-0 +++###-----      100.13s|;|%#-0 +++###-----      100.14s|;", "abc", "123", "", "   ", "qwertyuiop");
+	printf("\n");
+	j = ft_printf("|%#-0 +++###-----      100.10s|;|%#-0 +++###-----      100.11s|;|%#-0 +++###-----      100.12s|;|%#-0 +++###-----      100.13s|;|%#-0 +++###-----      100.14s|;", "abc", "123", "", "   ", "qwertyuiop");
+	printf("\n%d = %d\n\n", i, j);
 
 	// printf("{{{ bonus %%c }}}\n");
 	// i = printf("|%c|-|%c|-|%c|", '2', '1', 0);
@@ -56,16 +123,22 @@ int	main(int argc, char **argv)
 	// j = ft_printf("|%+10c|-|%+11c|-|%+12c|", '2', '1', 0);
 	// printf("\n%d = %d\n\n", i, j);
 
-	printf("{{{ bonus %%+-'n'c }}}\n");
-	i = printf("|%+-10c|-|%+-11c|-|%+-12c|", '2', '1', 0);
-	printf("\n");
-	j = ft_printf("|%+-10c|-|%+-11c|-|%+-12c|", '2', '1', 0);
-	printf("\n%d = %d\n\n", i, j);
+	// printf("{{{ bonus %%+-'n'c }}}\n");
+	// i = printf("|%+-10c|-|%+-11c|-|%+-12c|", '2', '1', 0);
+	// printf("\n");
+	// j = ft_printf("|%+-10c|-|%+-11c|-|%+-12c|", '2', '1', 0);
+	// printf("\n%d = %d\n\n", i, j);
 
 	// printf("{{{ bonus %% 'n'c }}}\n");
 	// i = printf("|% 10c|-|% 11c|-|% 12c|", '2', '1', 0);
 	// printf("\n");
 	// j = ft_printf("|% 10c|-|% 11c|-|% 12c|", '2', '1', 0);
+	// printf("\n%d = %d\n\n", i, j);
+
+	// printf("{{{ bonus %% -'m'.'n'c }}}\n");
+	// i = printf("|% -20.10c|-|% -21.11c|-|% -22.12c|", '2', '1', 0);
+	// printf("\n");
+	// j = ft_printf("|% -20.10c|-|% -21.11c|-|% -22.12c|", '2', '1', 0);
 	// printf("\n%d = %d\n\n", i, j);
 
 	// bonus %c
