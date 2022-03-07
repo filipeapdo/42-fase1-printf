@@ -6,7 +6,7 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 09:35:17 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/03/06 22:48:18 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/03/07 06:45:12 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ int	flp_printf_c(t_print *tab, char c)
 	{
 		str = flp_pf_dash_zero_handler(tab, str, " ");
 		ft_putchar_fd(c, 1);
-		flp_printf_s(tab, str);
+		ft_putstr_fd(str, 1);
 	}
 	else if (tab->wdth > 0 && !tab->dash)
 	{
 		str = flp_pf_wdth_handler(tab, str);
-		flp_printf_s(tab, str);
+		ft_putstr_fd(str, 1);
 		ft_putchar_fd(c, 1);
 	}
 	else
