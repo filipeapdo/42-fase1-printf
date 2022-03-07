@@ -20,12 +20,60 @@ int	main(int argc, char **argv)
 	// TEST(8, print(" %c %c %c ", '2', '1', 0));
 	// TEST(9, print(" %c %c %c ", 0, '1', '2'));
 
-	// bonus %c
-	printf("{{{ bonus %%c }}}\n");
-	i = printf(" %c %c %c %c %c %c %c", '3', '2', '0' - 256, '0' + 256, '1', 0, '0');
+	// printf("{{{ bonus %%c }}}\n");
+	// i = printf("|%c|-|%c|-|%c|", '2', '1', 0);
+	// printf("\n");
+	// j = ft_printf("|%c|-|%c|-|%c|", '2', '1', 0);
+	// printf("\n%d = %d\n\n", i, j);
+
+	// printf("{{{ bonus %%.'n'c }}}\n");
+	// i = printf("|%.10c|-|%.11c|-|%.12c|", '2', '1', 0);
+	// printf("\n");
+	// j = ft_printf("|%.10c|-|%.11c|-|%.12c|", '2', '1', 0);
+	// printf("\n%d = %d\n\n", i, j);
+
+	// printf("{{{ bonus %%'n'c }}}\n");
+	// i = printf("|%10c|-|%11c|-|%12c|", '2', '1', 0);
+	// printf("\n");
+	// j = ft_printf("|%10c|-|%11c|-|%12c|", '2', '1', 0);
+	// printf("\n%d = %d\n\n", i, j);
+
+	// printf("{{{ bonus %%-'n'c }}}\n");
+	// i = printf("|%-10c|-|%-11c|-|%-12c|", '2', '1', 0);
+	// printf("\n");
+	// j = ft_printf("|%-10c|-|%-11c|-|%-12c|", '2', '1', 0);
+	// printf("\n%d = %d\n\n", i, j);
+
+	// printf("{{{ bonus %%0'n'c }}}\n");
+	// i = printf("|%010c|-|%011c|-|%012c|", '2', '1', 0);
+	// printf("\n");
+	// j = ft_printf("|%010c|-|%011c|-|%012c|", '2', '1', 0);
+	// printf("\n%d = %d\n\n", i, j);
+
+	// printf("{{{ bonus %%+'n'c }}}\n");
+	// i = printf("|%+10c|-|%+11c|-|%+12c|", '2', '1', 0);
+	// printf("\n");
+	// j = ft_printf("|%+10c|-|%+11c|-|%+12c|", '2', '1', 0);
+	// printf("\n%d = %d\n\n", i, j);
+
+	printf("{{{ bonus %%+-'n'c }}}\n");
+	i = printf("|%+-10c|-|%+-11c|-|%+-12c|", '2', '1', 0);
 	printf("\n");
-	j = ft_printf(" %c %c %c %c %c %c %c", '3', '2', '0' - 256, '0' + 256, '1', 0, '0');
+	j = ft_printf("|%+-10c|-|%+-11c|-|%+-12c|", '2', '1', 0);
 	printf("\n%d = %d\n\n", i, j);
+
+	// printf("{{{ bonus %% 'n'c }}}\n");
+	// i = printf("|% 10c|-|% 11c|-|% 12c|", '2', '1', 0);
+	// printf("\n");
+	// j = ft_printf("|% 10c|-|% 11c|-|% 12c|", '2', '1', 0);
+	// printf("\n%d = %d\n\n", i, j);
+
+	// bonus %c
+	// printf("{{{ bonus %%c }}}\n");
+	// i = printf("|%-10c|-|%-11c|-|%-12c|-|%-13c|-|%-14c|-|%-15c|-|%-16c|", '3', '2', '0' - 256, '0' + 256, '1', 0, '0');
+	// printf("\n");
+	// j = ft_printf("|%-10c|-|%-11c|-|%-12c|-|%-13c|-|%-14c|-|%-15c|-|%-16c|", '3', '2', '0' - 256, '0' + 256, '1', 0, '0');
+	// printf("\n%d = %d\n\n", i, j);
 	
 	// bonus %-d
 	// printf("{{{ bonus %%-d }}}\n");

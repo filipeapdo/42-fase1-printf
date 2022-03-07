@@ -6,7 +6,7 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 15:22:27 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/03/06 17:50:18 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/03/06 22:39:33 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	flp_printf_i_aux(t_print *tab, char *str)
 {
+	tab->hash = 0;
 	if (*str == '-')
 		tab->sign = (int) '-';
 	else if (tab->sign == 1)
@@ -39,7 +40,8 @@ int	flp_printf_i(t_print *tab, int n)
 	if (tab->sign || tab->spce)
 		str = flp_pf_sign_spce_handler(tab, str);
 	str = flp_pf_wdth_handler(tab, str);
-	flp_printf_s(tab, str);
+	ft_putstr_fd(str, 1);
+	tab->rtrn += ft_strlen(str);
 	free(str);
 	return (tab->rtrn);
 }
