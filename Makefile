@@ -6,7 +6,7 @@
 #    By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/25 08:38:39 by fiaparec          #+#    #+#              #
-#    Updated: 2022/03/08 06:59:13 by fiaparec         ###   ########.fr        #
+#    Updated: 2022/03/08 19:17:43 by fiaparec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRCS_BONUS		= ft_printf_bonus.c \
 					flp_pf_utils_swap.c flp_pf_utils_itoa.c\
 					flp_printf_c.c flp_printf_s.c \
 					flp_printf_d.c flp_printf_i.c \
-					flp_printf_u.c flp_printf_x.c \
+					flp_printf_u.c flp_printf_x.c flp_printf_uppx.c \
 					flp_printf_percent.c
 
 OBJS_BONUS		= $(SRCS_BONUS:.c=.o)
@@ -70,7 +70,7 @@ re:				fclean all
 test:			bonus
 				@$(CC) test.c $(LIBFTPF_LINK) -o test.out && ./test.out
 
-a:				test_c test_s test_d test_i test_u test_x
+a:				test_c test_s test_d test_i test_u test_x test_uppx
 
 test_c:			bonus
 				@$(CC) test_c_expected.c -o test.out && ./test.out > expected.log
@@ -106,6 +106,12 @@ test_x:			bonus
 				@$(CC) test_x_expected.c -o test.out && ./test.out > expected.log
 				@$(CC) test_x_result.c $(LIBFTPF_LINK) -o test.out && ./test.out > result.log
 				@echo -e -n "\n[test_x] ::: "
+				@sh test.sh
+
+test_uppx:		bonus
+				@$(CC) test_uppx_expected.c -o test.out && ./test.out > expected.log
+				@$(CC) test_uppx_result.c $(LIBFTPF_LINK) -o test.out && ./test.out > result.log
+				@echo -e -n "\n[test_uppx] ::: "
 				@sh test.sh
 
 .PHONY:			all bonus clean fclean re test

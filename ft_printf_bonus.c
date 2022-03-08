@@ -6,7 +6,7 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 08:01:56 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/03/08 07:16:19 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/03/08 19:16:42 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ static void	flp_pf_conv_handler(t_print *tab, const char *format, int pos)
 		tab->rtrn = flp_printf_u(tab, va_arg(tab->args, unsigned int));
 	else if (*(format + pos) == 'x')
 		tab->rtrn = flp_printf_x(tab, va_arg(tab->args, unsigned int));
-	// else if (*(format + pos) == 'X')
-	// 	tab->rtrn = flp_printf_uppx(va_arg(tab->args, unsigned int));
+	else if (*(format + pos) == 'X')
+		tab->rtrn = flp_printf_uppx(tab, va_arg(tab->args, unsigned int));
 	else if (*(format + pos) == '%')
 		tab->rtrn = flp_printf_percent(tab);
 }
