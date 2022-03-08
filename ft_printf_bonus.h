@@ -6,7 +6,7 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 08:01:45 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/03/07 20:37:39 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/03/07 20:47:24 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ char	*flp_pf_wdth_handler(t_print *tab, char *s);
 // utils
 char	*flp_pf_utils_joinswap(char *s1, char *s2, int reverse);
 char	*flp_pf_utils_substrswap(char *s, int start, int len);
-int		flp_pf_utils_intlen_base_ul(unsigned int n, int base);
-char	*flp_pf_utils_itoa_base_ul(unsigned int n, int base, char conv);
+int		flp_pf_utils_intlen_base_ul(unsigned long int n, int base);
+char	*flp_pf_utils_itoa_base_ul(unsigned long int n, int base, char conv);
 
 // conversions
 int		flp_printf_c(t_print *tab, char c);
@@ -59,7 +59,7 @@ int		flp_printf_s(t_print *tab, char *s);
 int		flp_printf_p(unsigned long int n);
 int		flp_printf_d(t_print *tab, int n);
 int		flp_printf_i(t_print *tab, int n);
-int		flp_printf_u(unsigned int n);
+int		flp_printf_u(t_print *tab, unsigned int n);
 int		flp_printf_x(unsigned int n);
 int		flp_printf_uppx(unsigned int n);
 int		flp_printf_percent(void);

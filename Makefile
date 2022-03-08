@@ -6,7 +6,7 @@
 #    By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/25 08:38:39 by fiaparec          #+#    #+#              #
-#    Updated: 2022/03/07 20:37:59 by fiaparec         ###   ########.fr        #
+#    Updated: 2022/03/07 20:52:18 by fiaparec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ SRCS_BONUS		= ft_printf_bonus.c \
 					flp_pf_flag_handler.c flp_pf_wdth_prec_handler.c \
 					flp_pf_utils_swap.c flp_pf_utils_itoa.c\
 					flp_printf_c.c flp_printf_s.c \
-					flp_printf_d.c flp_printf_i.c
+					flp_printf_d.c flp_printf_i.c \
+					flp_printf_u.c
 
 OBJS_BONUS		= $(SRCS_BONUS:.c=.o)
 
@@ -68,7 +69,7 @@ re:				fclean all
 test:			bonus
 				@$(CC) test.c $(LIBFTPF_LINK) -o test.out && ./test.out
 
-a:				test_c test_s test_d test_i
+a:				test_c test_s test_d test_i test_u
 
 test_c:			bonus
 				@$(CC) test_c_expected.c -o test.out && ./test.out > expected.log
@@ -92,6 +93,12 @@ test_i:			bonus
 				@$(CC) test_i_expected.c -o test.out && ./test.out > expected.log
 				@$(CC) test_i_result.c $(LIBFTPF_LINK) -o test.out && ./test.out > result.log
 				@echo -e -n "\n[test_i] ::: "
+				@sh test.sh
+
+test_u:			bonus
+				@$(CC) test_u_expected.c -o test.out && ./test.out > expected.log
+				@$(CC) test_u_result.c $(LIBFTPF_LINK) -o test.out && ./test.out > result.log
+				@echo -e -n "\n[test_u] ::: "
 				@sh test.sh
 
 .PHONY:			all bonus clean fclean re test
