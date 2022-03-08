@@ -6,13 +6,13 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 15:34:11 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/03/07 20:27:40 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/03/07 21:34:26 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-int	flp_pf_utils_intlen_base_ul(unsigned int n, int base)
+int	flp_pf_utils_intlen_base_ul(unsigned long int n, int base)
 {
 	int	len;
 
@@ -28,12 +28,12 @@ int	flp_pf_utils_intlen_base_ul(unsigned int n, int base)
 	return (len);
 }
 
-char	*flp_pf_utils_itoa_base_ul(unsigned int n, int base, char conv)
+char	*flp_pf_utils_itoa_base_ul(unsigned long int n, int base, char conv)
 {
 	int		len;
 	char	*nptr;
 
-	len = flp_intlen_base(n, base);
+	len = flp_pf_utils_intlen_base_ul(n, base);
 	nptr = (char *)malloc(sizeof(char) * (len + 1));
 	if (!nptr)
 		return (NULL);
@@ -48,9 +48,9 @@ char	*flp_pf_utils_itoa_base_ul(unsigned int n, int base, char conv)
 		else if (base == 16)
 		{
 			if (conv == 'x' || conv == 'p')
-				*(nptr + len) = n % base + 55;
-			else if (conv == 'X')
 				*(nptr + len) = n % base + 87;
+			else if (conv == 'X')
+				*(nptr + len) = n % base + 55;
 		}
 		n /= base;
 	}

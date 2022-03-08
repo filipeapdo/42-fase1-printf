@@ -6,7 +6,7 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 08:01:56 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/03/07 20:45:50 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/03/08 07:16:19 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 static void	flp_pf_conv_handler(t_print *tab, const char *format, int pos)
 {
+	// printf("flp_pf_conv_handler|%c|\n", *(format + pos));
 	if (*(format + pos) == 'c')
 		flp_printf_c(tab, (char)va_arg(tab->args, int));
 	else if (*(format + pos) == 's')
@@ -27,20 +28,21 @@ static void	flp_pf_conv_handler(t_print *tab, const char *format, int pos)
 		flp_printf_i(tab, va_arg(tab->args, int));
 	else if (*(format + pos) == 'u')
 		tab->rtrn = flp_printf_u(tab, va_arg(tab->args, unsigned int));
-	// else if (*(format + pos) == 'x')
-	// 	tab->rtrn = flp_printf_x(va_arg(tab->args, unsigned int));
+	else if (*(format + pos) == 'x')
+		tab->rtrn = flp_printf_x(tab, va_arg(tab->args, unsigned int));
 	// else if (*(format + pos) == 'X')
 	// 	tab->rtrn = flp_printf_uppx(va_arg(tab->args, unsigned int));
-	// else if (*(format + pos) == '%')
-	// 	tab->rtrn = flp_printf_percent();
+	else if (*(format + pos) == '%')
+		tab->rtrn = flp_printf_percent(tab);
 }
 
 static int	flp_pf_format_eval(t_print *tab, const char *format, int pos)
 {
-	if (!ft_strchr("-0+ #123456789.cspdiuxX", *(format + pos)))
+	// printf("flp_pf_format_eval|%c|\n", *(format + pos));
+	if (!ft_strchr("-0+ #123456789.cspdiuxX\%", *(format + pos)))
 	{
 		// flp_printf_c(tab, '%');
-		// flp_printf_c(tab, *(format + pos));
+		flp_printf_c(tab, *(format + pos));
 		// return (++pos);
 		return (++pos);
 	}
@@ -55,11 +57,12 @@ static int	flp_pf_format_eval(t_print *tab, const char *format, int pos)
 			pos = flp_pf_wdth_prec_identifier(tab, format,
 					pos + 1, *(format + pos));
 	}
+	// printf("flp_pf_format_eval|%c|\n", *(format + pos));
 	flp_pf_conv_handler(tab, format, pos++);
 	return (pos);
 }
 
-static t_print	*flp_pf_init_tab(t_print *tab, int init)
+static t_print	*flp_pf_init_reset_tab(t_print *tab, int init)
 {
 	if (init)
 		tab->rtrn = 0;
@@ -82,16 +85,17 @@ int	ft_printf(const char *format, ...)
 	tab = (t_print *)malloc(sizeof(t_print));
 	if (!tab)
 		return (-1);
-	flp_pf_init_tab(tab, 1);
+	flp_pf_init_reset_tab(tab, 1);
 	va_start(tab->args, format);
 	i = 0;
 	rtrn = 0;
 	while (*(format + i))
 	{
-		flp_pf_init_tab(tab, 0);
+		flp_pf_init_reset_tab(tab, 0);
+		// printf("ft_strlen(format):%lu\n", ft_strlen(format));
 		if (*(format + i) == '%' && ((size_t)i + 1) == ft_strlen(format))
 			return (-1);
-		else if (*(format + i) == '%' && ((size_t)i + 1) < ft_strlen(format))
+		if (*(format + i) == '%' && ((size_t)i + 1) < ft_strlen(format))
 			i = flp_pf_format_eval(tab, format, i + 1);
 		else
 		{

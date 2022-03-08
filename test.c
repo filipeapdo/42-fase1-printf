@@ -10,10 +10,10 @@ int	main(int argc, char **argv)
 	i = 0;
 	j = 0;
 
-	printf(" %+-19.9u %+-20.10u %+-21.11u %+-22.12u %+-23.13u %+-24.14u %+-25.15u", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
+	i = printf("%%%");
 	printf("\n");
-	ft_printf(" %+-19.9u %+-20.10u %+-21.11u %+-22.12u %+-23.13u %+-24.14u %+-25.15u", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
-	printf("\n");
+	j = ft_printf("%%%");
+	printf("\n%d=%d\n\n", i, j);
 
 	return (0);
 }

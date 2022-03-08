@@ -6,7 +6,7 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 07:04:02 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/03/06 17:26:16 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/03/08 06:36:37 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ char	*flp_pf_dash_zero_handler(t_print *tab, char *s, char *fill)
 	char	*str_dash_zero;
 
 	str_dash_zero = ft_strdup(s);
-	if ((tab->sign || tab->spce) && tab->wdth > 0)
+	if ((tab->sign || tab->spce) && tab->wdth >= 1)
 		tab->wdth -= 1;
-	if (tab->hash && tab->wdth > 0)
+	if (tab->hash && tab->wdth >= 2)
 		tab->wdth -= 2;
 	if (tab->dash)
 		while (ft_strlen(str_dash_zero) < (size_t)tab->wdth)
@@ -36,9 +36,9 @@ char	*flp_pf_sign_spce_handler(t_print *tab, char *s)
 	char	*str_sign_spce;
 
 	str_sign_spce = ft_strdup(s);
-	if (tab->sign == (int)'-')
+	if (tab->sign == (int) '-')
 		str_sign_spce = flp_pf_utils_joinswap("-", str_sign_spce, 1);
-	else if (tab->sign == (int)'+')
+	else if (tab->sign == (int) '+')
 		str_sign_spce = flp_pf_utils_joinswap("+", str_sign_spce, 1);
 	else if (tab->spce)
 		str_sign_spce = flp_pf_utils_joinswap(" ", str_sign_spce, 1);
@@ -55,8 +55,6 @@ char	*flp_pf_hash_handler(char *s, char x)
 		str_hash = flp_pf_utils_joinswap("0x", str_hash, 1);
 	else if (x == 'X')
 		str_hash = flp_pf_utils_joinswap("0X", str_hash, 1);
-	else
-		return (NULL);
 	free(s);
 	return (str_hash);
 }
