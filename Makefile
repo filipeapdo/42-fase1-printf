@@ -6,7 +6,7 @@
 #    By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/25 08:38:39 by fiaparec          #+#    #+#              #
-#    Updated: 2022/03/08 19:17:43 by fiaparec         ###   ########.fr        #
+#    Updated: 2022/03/12 06:44:22 by fiaparec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,10 +26,11 @@ SRCS_BONUS		= ft_printf_bonus.c \
 					flp_pf_flag_wdth_prec_ident.c \
 					flp_pf_flag_handler.c flp_pf_wdth_prec_handler.c \
 					flp_pf_utils_swap.c flp_pf_utils_itoa.c\
+					flp_printf_percent.c \
 					flp_printf_c.c flp_printf_s.c \
 					flp_printf_d.c flp_printf_i.c \
 					flp_printf_u.c flp_printf_x.c flp_printf_uppx.c \
-					flp_printf_percent.c
+					flp_printf_p.c
 
 OBJS_BONUS		= $(SRCS_BONUS:.c=.o)
 
@@ -68,50 +69,72 @@ re:				fclean all
 # tests
 
 test:			bonus
-				@$(CC) test.c $(LIBFTPF_LINK) -o test.out && ./test.out
+				@$(CC) -w test.c $(LIBFTPF_LINK) -o test.out && ./test.out
 
-a:				test_c test_s test_d test_i test_u test_x test_uppx
+a:				test_c test_s test_d test_i test_u test_x test_uppx test_p
 
 test_c:			bonus
-				@$(CC) test_c_expected.c -o test.out && ./test.out > expected.log
-				@$(CC) test_c_result.c $(LIBFTPF_LINK) -o test.out && ./test.out > result.log
-				@echo -e -n "\n[test_c] ::: "
-				@sh test.sh
+				@$(CC) -w test_c_expected.c -o test.out && ./test.out > expected.log
+				@$(CC) -w test_c_result.c $(LIBFTPF_LINK) -o test.out && ./test.out > result.log
+				@echo ""
+				@echo -n "[test_c] ::: "
+				@bash test.sh
+				@echo ""
 
 test_s:			bonus
-				@$(CC) test_s_expected.c -o test.out && ./test.out > expected.log
-				@$(CC) test_s_result.c $(LIBFTPF_LINK) -o test.out && ./test.out > result.log
-				@echo -e -n "\n[test_s] ::: "
-				@sh test.sh
+				@$(CC) -w test_s_expected.c -o test.out && ./test.out > expected.log
+				@$(CC) -w test_s_result.c $(LIBFTPF_LINK) -o test.out && ./test.out > result.log
+				@echo ""
+				@echo -n "[test_s] ::: "
+				@bash test.sh
+				@echo ""
 
 test_d:			bonus
-				@$(CC) test_d_expected.c -o test.out && ./test.out > expected.log
-				@$(CC) test_d_result.c $(LIBFTPF_LINK) -o test.out && ./test.out > result.log
-				@echo -e -n "\n[test_d] ::: "
-				@sh test.sh
+				@$(CC) -w test_d_expected.c -o test.out && ./test.out > expected.log
+				@$(CC) -w test_d_result.c $(LIBFTPF_LINK) -o test.out && ./test.out > result.log
+				@echo ""
+				@echo -n "[test_d] ::: "
+				@bash test.sh
+				@echo ""
 
 test_i:			bonus
-				@$(CC) test_i_expected.c -o test.out && ./test.out > expected.log
-				@$(CC) test_i_result.c $(LIBFTPF_LINK) -o test.out && ./test.out > result.log
-				@echo -e -n "\n[test_i] ::: "
-				@sh test.sh
+				@$(CC) -w test_i_expected.c -o test.out && ./test.out > expected.log
+				@$(CC) -w test_i_result.c $(LIBFTPF_LINK) -o test.out && ./test.out > result.log
+				@echo ""
+				@echo -n "[test_i] ::: "
+				@bash test.sh
+				@echo ""
 
 test_u:			bonus
-				@$(CC) test_u_expected.c -o test.out && ./test.out > expected.log
-				@$(CC) test_u_result.c $(LIBFTPF_LINK) -o test.out && ./test.out > result.log
-				@echo -e -n "\n[test_u] ::: "
-				@sh test.sh
+				@$(CC) -w test_u_expected.c -o test.out && ./test.out > expected.log
+				@$(CC) -w test_u_result.c $(LIBFTPF_LINK) -o test.out && ./test.out > result.log
+				@echo ""
+				@echo -n "[test_u] ::: "
+				@bash test.sh
+				@echo ""
 
 test_x:			bonus
-				@$(CC) test_x_expected.c -o test.out && ./test.out > expected.log
-				@$(CC) test_x_result.c $(LIBFTPF_LINK) -o test.out && ./test.out > result.log
-				@echo -e -n "\n[test_x] ::: "
-				@sh test.sh
+				@$(CC) -w test_x_expected.c -o test.out && ./test.out > expected.log
+				@$(CC) -w test_x_result.c $(LIBFTPF_LINK) -o test.out && ./test.out > result.log
+				@echo ""
+				@echo -n "[test_x] ::: "
+				@bash test.sh
+				@echo ""
 
 test_uppx:		bonus
-				@$(CC) test_uppx_expected.c -o test.out && ./test.out > expected.log
-				@$(CC) test_uppx_result.c $(LIBFTPF_LINK) -o test.out && ./test.out > result.log
-				@echo -e -n "\n[test_uppx] ::: "
-				@sh test.sh
+				@$(CC) -w test_uppx_expected.c -o test.out && ./test.out > expected.log
+				@$(CC) -w test_uppx_result.c $(LIBFTPF_LINK) -o test.out && ./test.out > result.log
+				@echo ""
+				@echo -n "[test_uppx] ::: "
+				@bash test.sh
+				@echo ""
+
+test_p:			bonus
+				@$(CC) -w test_p_expected.c -o test.out && ./test.out > expected.log
+				@$(CC) -w test_p_result.c $(LIBFTPF_LINK) -o test.out && ./test.out > result.log
+				@echo ""
+				@echo -n "[test_p] ::: "
+				@bash test.sh
+				@echo ""
 
 .PHONY:			all bonus clean fclean re test

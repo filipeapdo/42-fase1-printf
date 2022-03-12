@@ -6,66 +6,50 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 17:11:31 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/03/06 17:13:27 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/03/12 06:54:56 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-static int	flp_intlen_ul(unsigned long int n)
+static void	flp_printf_p_aux(t_print *tab, unsigned long int n)
 {
-	int	len;
-
-	if (n > 0)
-		len = 0;
-	else
-		len = 1;
-	while (n != 0)
-	{
-		len++;
-		n /= 16;
-	}
-	return (len);
-}
-
-static char	*flp_itox_ul(unsigned long int n)
-{
-	int		len;
-	char	*nptr;
-
-	len = flp_intlen_ul(n);
-	nptr = (char *)malloc(sizeof(char) * (len + 1));
-	if (!nptr)
-		return (NULL);
-	if (n == 0 && ft_strlcpy(nptr, "0\0", 2))
-		return (nptr);
-	*(nptr + len) = '\0';
-	while (n > 0)
-	{
-		len--;
-		if ((n % 16) < 10)
-			*(nptr + len) = n % 16 + '0';
-		else
-			*(nptr + len) = n % 16 + 87;
-		n /= 16;
-	}
-	return (nptr);
-}
-
-int	flp_printf_p(unsigned long int n)
-{
-	int		cnt;
-	char	*str;
-
+	tab->hash = 1;
+	if (tab->sign == 1)
+		tab->sign = (int) '+';
+	if (tab->prec == -1)
+		tab->prec = 1;
 	if (n == 0)
 	{
-		ft_putstr_fd("(nil)", 1);
-		return (5);
+		tab->hash = 0;
+		tab->sign = 0;
+		tab->spce = 0;
 	}
-	cnt = 0;
-	str = flp_itox_ul(n);
-	cnt += flp_printf_s("0x");
-	cnt += flp_printf_s(str);
+	if (n == 0 && tab->prec != -1)
+		tab->prec = 0;
+}
+
+int	flp_printf_p(t_print *tab, unsigned long int n)
+{
+	char	*str;
+
+	flp_printf_p_aux(tab, n);
+	if (n == 0)
+		str = ft_strdup("(nil)");
+	else
+		str = flp_pf_utils_itoa_base_ul(n, 16, 'x');
+	str = flp_pf_prec_handler(tab, str);
+	if (tab->dash || (n != 0 && tab->zero && tab->prec == 1))
+		str = flp_pf_dash_zero_handler(tab, str, "0");
+	else if (n == 0 && tab->zero && tab->prec == 1)
+		str = flp_pf_dash_zero_handler(tab, str, " ");
+	if (tab->hash)
+		str = flp_pf_hash_handler(str, 'x');
+	if (tab->sign || tab->spce)
+		str = flp_pf_sign_spce_handler(tab, str);
+	str = flp_pf_wdth_handler(tab, str);
+	ft_putstr_fd(str, 1);
+	tab->rtrn += ft_strlen(str);
 	free(str);
-	return (cnt);
+	return (tab->rtrn);
 }

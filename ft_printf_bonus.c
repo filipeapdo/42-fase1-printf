@@ -6,7 +6,7 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 08:01:56 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/03/08 19:16:42 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/03/08 19:29:16 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static void	flp_pf_conv_handler(t_print *tab, const char *format, int pos)
 		flp_printf_c(tab, (char)va_arg(tab->args, int));
 	else if (*(format + pos) == 's')
 		flp_printf_s(tab, va_arg(tab->args, char *));
-	// else if (*(format + pos) == 'p')
-	// 	tab->rtrn = flp_printf_p(va_arg(tab->args, unsigned long int));
+	else if (*(format + pos) == 'p')
+		tab->rtrn = flp_printf_p(tab, va_arg(tab->args, unsigned long int));
 	else if (*(format + pos) == 'd')
 		flp_printf_d(tab, va_arg(tab->args, int));
 	else if (*(format + pos) == 'i')

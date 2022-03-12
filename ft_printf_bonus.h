@@ -6,7 +6,7 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 08:01:45 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/03/08 19:16:28 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/03/08 19:29:04 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	*flp_pf_utils_itoa_base_ul(unsigned long int n, int base, char conv);
 // conversions
 int		flp_printf_c(t_print *tab, char c);
 int		flp_printf_s(t_print *tab, char *s);
-int		flp_printf_p(unsigned long int n);
+int		flp_printf_p(t_print *tab, unsigned long int n);
 int		flp_printf_d(t_print *tab, int n);
 int		flp_printf_i(t_print *tab, int n);
 int		flp_printf_u(t_print *tab, unsigned int n);
