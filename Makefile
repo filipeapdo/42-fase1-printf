@@ -6,7 +6,7 @@
 #    By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/25 08:38:39 by fiaparec          #+#    #+#              #
-#    Updated: 2022/03/12 06:44:22 by fiaparec         ###   ########.fr        #
+#    Updated: 2022/03/12 07:06:43 by fiaparec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,7 @@ re:				fclean all
 test:			bonus
 				@$(CC) -w test.c $(LIBFTPF_LINK) -o test.out && ./test.out
 
-a:				test_c test_s test_d test_i test_u test_x test_uppx test_p
+a:				test_c test_s test_d test_i test_u test_x test_uppx test_p test_percent
 
 test_c:			bonus
 				@$(CC) -w test_c_expected.c -o test.out && ./test.out > expected.log
@@ -134,6 +134,14 @@ test_p:			bonus
 				@$(CC) -w test_p_result.c $(LIBFTPF_LINK) -o test.out && ./test.out > result.log
 				@echo ""
 				@echo -n "[test_p] ::: "
+				@bash test.sh
+				@echo ""
+
+test_percent:	bonus
+				@$(CC) -w test_percent_expected.c -o test.out && ./test.out > expected.log
+				@$(CC) -w test_percent_result.c $(LIBFTPF_LINK) -o test.out && ./test.out > result.log
+				@echo ""
+				@echo -n "[test_percent] ::: "
 				@bash test.sh
 				@echo ""
 
