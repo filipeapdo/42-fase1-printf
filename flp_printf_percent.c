@@ -6,15 +6,15 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 10:27:48 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/02/28 15:05:21 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/03/08 07:12:28 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
-int	flp_printf_percent(void)
+int	flp_printf_percent(t_print *tab)
 {
 	ft_putchar_fd('%', 1);
-	return (1);
+	tab->rtrn += 1;
+	return (tab->rtrn);
 }

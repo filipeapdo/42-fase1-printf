@@ -6,12 +6,10 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:26:15 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/02/28 17:30:19 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/03/06 17:08:01 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "libft/libft.h"
 #include "ft_printf.h"
 
 static int	flp_check_format(char conv_spec, va_list arg)
