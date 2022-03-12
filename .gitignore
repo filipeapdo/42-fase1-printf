@@ -6,3 +6,4 @@
 *.log
 *.md
 printfTester
+ft_printf_tester

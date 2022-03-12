@@ -6,31 +6,39 @@
 #    By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/25 08:38:39 by fiaparec          #+#    #+#              #
-#    Updated: 2022/03/12 07:26:20 by fiaparec         ###   ########.fr        #
+#    Updated: 2022/03/12 19:57:41 by fiaparec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC				= gcc
+CC				= cc
 
-FLAG			= -Wall -Wextra -Werror
+FLAGS			= -Wall -Wextra -Werror
 
 AR				= ar rcs
 
 RM				= rm -f
 
-# SRCS			= ft_printf.c $(wildcard flp_*.c)
-
-# OBJS			= $(SRCS:.c=.o)
-
-SRCS_BONUS		= ft_printf_bonus.c \
-					flp_pf_flag_wdth_prec_ident.c \
-					flp_pf_flag_handler.c flp_pf_wdth_prec_handler.c \
-					flp_pf_utils_swap.c flp_pf_utils_itoa.c\
+SRCS			= ft_printf.c \
 					flp_printf_percent.c \
 					flp_printf_c.c flp_printf_s.c \
 					flp_printf_d.c flp_printf_i.c \
-					flp_printf_u.c flp_printf_x.c flp_printf_uppx.c \
+					flp_printf_u.c flp_printf_x.c \
+					flp_printf_uppx.c \
 					flp_printf_p.c
+
+OBJS			= $(SRCS:.c=.o)
+
+SRCS_BONUS		= bonus/ft_printf_bonus.c \
+					bonus/flp_pf_flag_wdth_prec_ident.c \
+					bonus/flp_pf_flag_handler.c \
+					bonus/flp_pf_wdth_prec_handler.c \
+					bonus/flp_pf_utils_swap.c bonus/flp_pf_utils_itoa.c\
+					bonus/flp_printf_percent.c \
+					bonus/flp_printf_c.c bonus/flp_printf_s.c \
+					bonus/flp_printf_d.c bonus/flp_printf_i.c \
+					bonus/flp_printf_u.c bonus/flp_printf_x.c \
+					bonus/flp_printf_uppx.c \
+					bonus/flp_printf_p.c
 
 OBJS_BONUS		= $(SRCS_BONUS:.c=.o)
 
@@ -40,14 +48,12 @@ NAME			= libftprintf.a
 LIBFTPF_LINK	= -L. -l:libftprintf.a
 
 .c.o:			
-				$(CC) $(FLAG) -c $< -o $(<:.c=.o)
+				$(CC) $(FLAGS) -c $< -o $(<:.c=.o)
 
-$(NAME):		$(OBJS_BONUS) $(LIBFT)
-				$(AR) $(NAME) $(OBJS_BONUS)
+$(NAME):		$(OBJS) $(LIBFT)
+				$(AR) $(NAME) $(OBJS)
 
 all:			$(NAME)
-
-bonus:			$(NAME)
 
 $(LIBFT):
 				make -C libft
@@ -56,6 +62,7 @@ $(LIBFT):
 clean:
 				make clean -C libft
 				$(RM) *.o
+				$(RM) bonus/*.o
 
 fclean:			clean
 				make fclean -C libft
@@ -63,22 +70,33 @@ fclean:			clean
 				$(RM) *.out
 				$(RM) *.a
 				$(RM) *.log
+				$(RM) bonus/*.out
+				$(RM) bonus/*.a
+				$(RM) bonus/*.log
+				$(RM) tests/*.out
+				$(RM) tests/*.a
+				$(RM) tests/*.log
 
 re:				fclean all
+
+bonus:			$(OBJS_BONUS) $(LIBFT)
+				$(AR) $(NAME) $(OBJS_BONUS)
 
 # tests
 
 test:			bonus
-				@$(CC) -w test.c $(LIBFTPF_LINK) -o test.out && ./test.out
+				@$(CC) $(FLAGS) tests/test.c $(LIBFTPF_LINK) -o tests/test.out && ./tests/test.out
 
 a:				test_c test_s test_d test_i test_u test_x test_uppx test_p test_percent
 
 test_c:			bonus
-				@$(CC) -w test_c_expected.c -o test.out && ./test.out > expected.log
-				@$(CC) -w test_c_result.c $(LIBFTPF_LINK) -o test.out && ./test.out > result.log
+				@$(CC) $(FLAGS) tests/test_c_expected.c -o tests/test.out
+				@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -q --log-file="tests/valgrind_expected.log" ./tests/test.out > tests/expected.log
+				@$(CC) $(FLAGS) tests/test_c_result.c $(LIBFTPF_LINK) -o tests/test.out
+				@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -q --log-file="tests/valgrind_result.log" ./tests/test.out > tests/result.log
 				@echo ""
 				@echo -n "[test_c] ::: "
-				@bash test.sh
+				@bash tests/test.sh
 				@echo ""
 
 test_s:			bonus
@@ -145,4 +163,4 @@ test_percent:	bonus
 				@bash test.sh
 				@echo ""
 
-.PHONY:			all bonus clean fclean re test
+.PHONY:			all clean fclean re bonus test
