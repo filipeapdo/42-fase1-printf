@@ -37,7 +37,6 @@ OBJS_BONUS		= $(SRCS_BONUS:.c=.o)
 LIBFT			= libft/libft.a
 
 NAME			= libftprintf.a
-LIBFTPF_LINK	= -L. -l:libftprintf.a
 
 .c.o:			
 				$(CC) $(FLAG) -c $< -o $(<:.c=.o)
