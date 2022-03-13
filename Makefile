@@ -6,7 +6,7 @@
 #    By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/25 08:38:39 by fiaparec          #+#    #+#              #
-#    Updated: 2022/03/13 18:43:01 by fiaparec         ###   ########.fr        #
+#    Updated: 2022/03/13 19:12:12 by fiaparec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,8 +95,7 @@ bonus:			$(NAME_BONUS)
 test:			bonus
 				@$(CC) $(CC_FLAGS) tests/test.c $(LIBFTPF_LINK) -o tests/test.out && ./tests/test.out
 
-# a:				test_c test_s test_d test_i test_u test_x test_uppx test_p test_percent
-a:				test_c test_s test_d test_i test_u test_x test_uppx test_p
+a:				test_c test_s test_d test_i test_u test_x test_uppx test_p test_percent
 
 test_c:			bonus
 				@$(CC) $(CC_FLAGS) tests/test_c_expected.c -o tests/test.out
@@ -179,11 +178,13 @@ test_p:			bonus
 				@echo ""
 
 test_percent:	bonus
-				@$(CC) -w test_percent_expected.c -o test.out && ./test.out > expected.log
-				@$(CC) -w test_percent_result.c $(LIBFTPF_LINK) -o test.out && ./test.out > result.log
+				@$(CC) $(CC_FLAGS) tests/test_percent_expected.c -o tests/test.out
+				@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -q --log-file="tests/valgrind_expected.log" ./tests/test.out > tests/expected.log
+				@$(CC) $(CC_FLAGS) tests/test_percent_result.c $(LIBFTPF_LINK) -o tests/test.out
+				@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -q --log-file="tests/valgrind_result.log" ./tests/test.out > tests/result.log
 				@echo ""
 				@echo -n "[test_percent] ::: "
-				@bash test.sh
+				@bash tests/test.sh
 				@echo ""
 
 .PHONY:			all clean fclean re bonus test
