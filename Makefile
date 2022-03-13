@@ -6,7 +6,7 @@
 #    By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/25 08:38:39 by fiaparec          #+#    #+#              #
-#    Updated: 2022/03/12 19:57:41 by fiaparec         ###   ########.fr        #
+#    Updated: 2022/03/13 09:16:28 by fiaparec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ SRCS_BONUS		= bonus/ft_printf_bonus.c \
 					bonus/flp_pf_flag_wdth_prec_ident.c \
 					bonus/flp_pf_flag_handler.c \
 					bonus/flp_pf_wdth_prec_handler.c \
-					bonus/flp_pf_utils_swap.c bonus/flp_pf_utils_itoa.c\
+					bonus/flp_pf_utils_swap.c bonus/flp_pf_utils_itoa.c \
 					bonus/flp_printf_percent.c \
 					bonus/flp_printf_c.c bonus/flp_printf_s.c \
 					bonus/flp_printf_d.c bonus/flp_printf_i.c \
@@ -45,24 +45,26 @@ OBJS_BONUS		= $(SRCS_BONUS:.c=.o)
 LIBFT			= libft/libft.a
 
 NAME			= libftprintf.a
+NAME_BONUS		= libftprintf_bonus.a
+
 LIBFTPF_LINK	= -L. -l:libftprintf.a
 
 .c.o:			
 				$(CC) $(FLAGS) -c $< -o $(<:.c=.o)
 
 $(NAME):		$(OBJS) $(LIBFT)
+				cp $(LIBFT) $(NAME)
 				$(AR) $(NAME) $(OBJS)
 
 all:			$(NAME)
 
 $(LIBFT):
 				make -C libft
-				cp $(LIBFT) $(NAME)
 
 clean:
 				make clean -C libft
-				$(RM) *.o
-				$(RM) bonus/*.o
+				$(RM) $(OBJS)
+				$(RM) $(OBJS_BONUS)
 
 fclean:			clean
 				make fclean -C libft
@@ -79,8 +81,12 @@ fclean:			clean
 
 re:				fclean all
 
-bonus:			$(OBJS_BONUS) $(LIBFT)
-				$(AR) $(NAME) $(OBJS_BONUS)
+$(NAME_BONUS):	$(OBJS_BONUS) $(LIBFT)
+				cp $(LIBFT) $(NAME_BONUS)
+				$(AR) $(NAME_BONUS) $(OBJS_BONUS)
+				cp $(NAME_BONUS) $(NAME)
+
+bonus:			$(NAME_BONUS)
 
 # tests
 
