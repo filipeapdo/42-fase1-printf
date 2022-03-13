@@ -6,32 +6,35 @@
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 08:01:56 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/03/12 18:59:40 by fiaparec         ###   ########.fr       */
+/*   Updated: 2022/03/13 11:10:11 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-static void	flp_pf_conv_handler(t_print *tab, const char *format, int pos)
+static int	flp_pf_conv_handler(t_print *tab, const char *format, int pos)
 {
+	if (tab->wdth < 0 || tab->prec < -1)
+		return (-1);
 	if (*(format + pos) == 'c')
 		flp_printf_c(tab, (char)va_arg(tab->args, int));
 	else if (*(format + pos) == 's')
 		flp_printf_s(tab, va_arg(tab->args, char *));
 	else if (*(format + pos) == 'p')
-		tab->size = flp_printf_p(tab, va_arg(tab->args, unsigned long int));
+		flp_printf_p(tab, va_arg(tab->args, unsigned long int));
 	else if (*(format + pos) == 'd')
 		flp_printf_d(tab, va_arg(tab->args, int));
 	else if (*(format + pos) == 'i')
 		flp_printf_i(tab, va_arg(tab->args, int));
 	else if (*(format + pos) == 'u')
-		tab->size = flp_printf_u(tab, va_arg(tab->args, unsigned int));
+		flp_printf_u(tab, va_arg(tab->args, unsigned int));
 	else if (*(format + pos) == 'x')
-		tab->size = flp_printf_x(tab, va_arg(tab->args, unsigned int));
+		flp_printf_x(tab, va_arg(tab->args, unsigned int));
 	else if (*(format + pos) == 'X')
-		tab->size = flp_printf_uppx(tab, va_arg(tab->args, unsigned int));
+		flp_printf_uppx(tab, va_arg(tab->args, unsigned int));
 	else if (*(format + pos) == '%')
-		tab->size = flp_printf_percent(tab);
+		flp_printf_percent(tab);
+	return (tab->size);
 }
 
 static int	flp_pf_format_eval(t_print *tab, const char *format, int pos)
@@ -49,7 +52,11 @@ static int	flp_pf_format_eval(t_print *tab, const char *format, int pos)
 			pos = flp_pf_wdth_prec_identifier(tab, format,
 					pos + 1, *(format + pos));
 	}
-	flp_pf_conv_handler(tab, format, pos++);
+	if (flp_pf_conv_handler(tab, format, pos++) < 0)
+	{
+		tab->size = -1;
+		return (-1);
+	}
 	return (pos);
 }
 
@@ -65,6 +72,13 @@ static t_print	*flp_pf_init_reset_tab(t_print *tab, int init)
 	tab->wdth = 0;
 	tab->prec = -1;
 	return (tab);
+}
+
+static int	ft_printf_return_size(t_print *tab, int size)
+{
+	if (tab->size < 0)
+		return (-1);
+	return (size + tab->size);
 }
 
 int	ft_printf(const char *format, ...)
@@ -90,7 +104,7 @@ int	ft_printf(const char *format, ...)
 		}
 	}
 	va_end(tab->args);
-	size += tab->size;
+	size = ft_printf_return_size(tab, size);
 	free(tab);
 	return (size);
 }
