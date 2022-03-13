@@ -18,8 +18,8 @@
 
 # define TAB_INIT 1
 # define TAB_RESET 0
-# define JOIN_LEFT 1
-# define JOIN_RIGHT 0
+# define LEFT 1
+# define RIGHT 0
 
 typedef struct s_print
 {
