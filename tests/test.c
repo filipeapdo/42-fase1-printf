@@ -6,7 +6,7 @@ int	main(int argc, char **argv)
 {
 	int	i;
 	int	j;
-	char *str = "NULL";
+	// char *str = "NULL";
 
 	i = 0;
 	j = 0;
@@ -23,9 +23,9 @@ int	main(int argc, char **argv)
 
 	// printf("%.2147483648s\n\n", str);
 
-	i = printf(" NULL %21474.2147483648s NULL ", str);
+	i = printf(" %+d %+d %+d %+d", INT_MAX, INT_MIN, 0, -42);
 	printf("\n");
-	j = ft_printf(" NULL %21474.2147483648s NULL ", str);
+	j = ft_printf(" %+d %+d %+d %+d", INT_MAX, INT_MIN, 0, -42);
 	printf("\n%d=%d\n\n", i, j);
 
 	return (0);

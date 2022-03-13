@@ -6,7 +6,7 @@
 #    By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/25 08:38:39 by fiaparec          #+#    #+#              #
-#    Updated: 2022/03/13 10:46:12 by fiaparec         ###   ########.fr        #
+#    Updated: 2022/03/13 17:41:47 by fiaparec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,7 @@ LIBFTPF_LINK	= -L. -l:libftprintf.a
 				$(CC) $(CC_FLAGS) -c $< -o $(<:.c=.o)
 
 $(NAME):		$(OBJS) $(LIBFT)
+				$(RM) $(NAME) $(NAME_BONUS)
 				cp $(LIBFT) $(NAME)
 				$(AR) $(NAME) $(OBJS)
 
@@ -82,6 +83,7 @@ fclean:			clean
 re:				fclean all
 
 $(NAME_BONUS):	$(OBJS_BONUS) $(LIBFT)
+				$(RM) $(NAME) $(NAME_BONUS)
 				cp $(LIBFT) $(NAME_BONUS)
 				$(AR) $(NAME_BONUS) $(OBJS_BONUS)
 				cp $(NAME_BONUS) $(NAME)
@@ -91,10 +93,10 @@ bonus:			$(NAME_BONUS)
 # tests
 
 test:			bonus
-				@$(CC) tests/test.c $(LIBFTPF_LINK) -o tests/test.out && ./tests/test.out
+				@$(CC) $(CC_FLAGS) tests/test.c $(LIBFTPF_LINK) -o tests/test.out && ./tests/test.out
 
 # a:				test_c test_s test_d test_i test_u test_x test_uppx test_p test_percent
-a:				test_c test_s
+a:				test_c test_s test_d test_i
 
 test_c:			bonus
 				@$(CC) $(CC_FLAGS) tests/test_c_expected.c -o tests/test.out
@@ -117,19 +119,23 @@ test_s:			bonus
 				@echo ""
 
 test_d:			bonus
-				@$(CC) -w test_d_expected.c -o test.out && ./test.out > expected.log
-				@$(CC) -w test_d_result.c $(LIBFTPF_LINK) -o test.out && ./test.out > result.log
+				@$(CC) $(CC_FLAGS) tests/test_d_expected.c -o tests/test.out
+				@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -q --log-file="tests/valgrind_expected.log" ./tests/test.out > tests/expected.log
+				@$(CC) $(CC_FLAGS) tests/test_d_result.c $(LIBFTPF_LINK) -o tests/test.out
+				@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -q --log-file="tests/valgrind_result.log" ./tests/test.out > tests/result.log
 				@echo ""
 				@echo -n "[test_d] ::: "
-				@bash test.sh
+				@bash tests/test.sh
 				@echo ""
 
 test_i:			bonus
-				@$(CC) -w test_i_expected.c -o test.out && ./test.out > expected.log
-				@$(CC) -w test_i_result.c $(LIBFTPF_LINK) -o test.out && ./test.out > result.log
+				@$(CC) $(CC_FLAGS) tests/test_i_expected.c -o tests/test.out
+				@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -q --log-file="tests/valgrind_expected.log" ./tests/test.out > tests/expected.log
+				@$(CC) $(CC_FLAGS) tests/test_i_result.c $(LIBFTPF_LINK) -o tests/test.out
+				@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -q --log-file="tests/valgrind_result.log" ./tests/test.out > tests/result.log
 				@echo ""
 				@echo -n "[test_i] ::: "
-				@bash test.sh
+				@bash tests/test.sh
 				@echo ""
 
 test_u:			bonus
