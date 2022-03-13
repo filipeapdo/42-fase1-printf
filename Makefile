@@ -6,7 +6,7 @@
 #    By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/25 08:38:39 by fiaparec          #+#    #+#              #
-#    Updated: 2022/03/13 17:49:15 by fiaparec         ###   ########.fr        #
+#    Updated: 2022/03/13 18:31:51 by fiaparec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,7 +96,7 @@ test:			bonus
 				@$(CC) $(CC_FLAGS) tests/test.c $(LIBFTPF_LINK) -o tests/test.out && ./tests/test.out
 
 # a:				test_c test_s test_d test_i test_u test_x test_uppx test_p test_percent
-a:				test_c test_s test_d test_i test_u
+a:				test_c test_s test_d test_i test_u test_x test_uppx
 
 test_c:			bonus
 				@$(CC) $(CC_FLAGS) tests/test_c_expected.c -o tests/test.out
@@ -149,19 +149,23 @@ test_u:			bonus
 				@echo ""
 
 test_x:			bonus
-				@$(CC) -w test_x_expected.c -o test.out && ./test.out > expected.log
-				@$(CC) -w test_x_result.c $(LIBFTPF_LINK) -o test.out && ./test.out > result.log
+				@$(CC) $(CC_FLAGS) tests/test_x_expected.c -o tests/test.out
+				@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -q --log-file="tests/valgrind_expected.log" ./tests/test.out > tests/expected.log
+				@$(CC) $(CC_FLAGS) tests/test_x_result.c $(LIBFTPF_LINK) -o tests/test.out
+				@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -q --log-file="tests/valgrind_result.log" ./tests/test.out > tests/result.log
 				@echo ""
 				@echo -n "[test_x] ::: "
-				@bash test.sh
+				@bash tests/test.sh
 				@echo ""
 
 test_uppx:		bonus
-				@$(CC) -w test_uppx_expected.c -o test.out && ./test.out > expected.log
-				@$(CC) -w test_uppx_result.c $(LIBFTPF_LINK) -o test.out && ./test.out > result.log
+				@$(CC) $(CC_FLAGS) tests/test_uppx_expected.c -o tests/test.out
+				@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -q --log-file="tests/valgrind_expected.log" ./tests/test.out > tests/expected.log
+				@$(CC) $(CC_FLAGS) tests/test_uppx_result.c $(LIBFTPF_LINK) -o tests/test.out
+				@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -q --log-file="tests/valgrind_result.log" ./tests/test.out > tests/result.log
 				@echo ""
-				@echo -n "[test_uppx] ::: "
-				@bash test.sh
+				@echo -n "[test_X] ::: "
+				@bash tests/test.sh
 				@echo ""
 
 test_p:			bonus
