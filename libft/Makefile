@@ -6,15 +6,15 @@
 #    By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/15 22:54:20 by fiaparec          #+#    #+#              #
-#    Updated: 2022/03/06 17:31:21 by fiaparec         ###   ########.fr        #
+#    Updated: 2022/03/13 19:32:11 by fiaparec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC				= gcc
+CC				= cc
 
-FLAG			= -Wall -Wextra -Werror
+CC_FLAGS		= -Wall -Wextra -Werror
 
-AR				= ar rc
+AR				= ar rcs
 
 RM				= rm -f
 
@@ -31,7 +31,7 @@ OBJS			= $(SRCS:.c=.o)
 NAME			= libft.a
 
 .c.o:
-				$(CC) $(FLAG) -c $< -o $(<:.c=.o)
+				$(CC) $(CC_FLAGS) -c $< -o $(<:.c=.o)
 
 $(NAME):		$(OBJS)
 				$(AR) $(NAME) $(OBJS)

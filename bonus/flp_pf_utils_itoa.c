@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flp_printf_u.c                                     :+:      :+:    :+:   */
+/*   flp_pf_utils_itoa.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/28 15:44:57 by fiaparec          #+#    #+#             */
-/*   Updated: 2022/03/12 19:44:19 by fiaparec         ###   ########.fr       */
+/*   Created: 2022/03/01 15:34:11 by fiaparec          #+#    #+#             */
+/*   Updated: 2022/03/12 18:59:40 by fiaparec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
-static int	flp_intlen_u(unsigned int n)
+int	flp_pf_utils_intlen_base_ul(unsigned long int n, int base)
 {
 	int	len;
 
@@ -23,17 +23,17 @@ static int	flp_intlen_u(unsigned int n)
 	while (n != 0)
 	{
 		len++;
-		n /= 10;
+		n /= base;
 	}
 	return (len);
 }
 
-static char	*flp_itoa_u(unsigned int n)
+char	*flp_pf_utils_itoa_base_ul(unsigned long int n, int base, char conv)
 {
 	int		len;
 	char	*nptr;
 
-	len = flp_intlen_u(n);
+	len = flp_pf_utils_intlen_base_ul(n, base);
 	nptr = (char *)malloc(sizeof(char) * (len + 1));
 	if (!nptr)
 		return (NULL);
@@ -43,20 +43,16 @@ static char	*flp_itoa_u(unsigned int n)
 	while (n > 0)
 	{
 		len--;
-		*(nptr + len) = n % 10 + '0';
-		n /= 10;
+		if (base == 10 || (base == 16 && (n % base) < 10))
+			*(nptr + len) = n % base + '0';
+		else if (base == 16)
+		{
+			if (conv == 'x' || conv == 'p')
+				*(nptr + len) = n % base + 87;
+			else if (conv == 'X')
+				*(nptr + len) = n % base + 55;
+		}
+		n /= base;
 	}
 	return (nptr);
-}
-
-int	flp_printf_u(unsigned int n)
-{
-	int		cnt;
-	char	*str;
-
-	cnt = 0;
-	str = flp_itoa_u(n);
-	cnt = flp_printf_s(str);
-	free(str);
-	return (cnt);
 }
