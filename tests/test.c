@@ -23,9 +23,9 @@ int	main(int argc, char **argv)
 
 	// printf("%.2147483648s\n\n", str);
 
-	i = printf(" %+d %+d %+d %+d", INT_MAX, INT_MIN, 0, -42);
+	i = printf(" %u %u %u %u", UINT_MAX + 10, INT_MIN, 0, -42);
 	printf("\n");
-	j = ft_printf(" %+d %+d %+d %+d", INT_MAX, INT_MIN, 0, -42);
+	j = ft_printf(" %u %u %u %u", UINT_MAX + 10, INT_MIN, 0, -42);
 	printf("\n%d=%d\n\n", i, j);
 
 	return (0);
