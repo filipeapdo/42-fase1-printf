@@ -6,7 +6,7 @@
 #    By: fiaparec <fiaparec@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/25 08:38:39 by fiaparec          #+#    #+#              #
-#    Updated: 2022/03/26 15:02:53 by fiaparec         ###   ########.fr        #
+#    Updated: 2022/03/26 15:21:50 by fiaparec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,8 @@ AR				= ar rcs
 
 RM				= rm -f
 
+LIBFT			= libft/libft.a
+
 SRCS			= ft_printf.c \
 					flp_printf_percent.c \
 					flp_printf_c.c flp_printf_s.c \
@@ -27,6 +29,8 @@ SRCS			= ft_printf.c \
 					flp_printf_p.c
 
 OBJS			= $(SRCS:.c=.o)
+
+NAME			= libftprintf.a
 
 SRCS_BONUS		= bonus/ft_printf_bonus.c \
 					bonus/flp_pf_flag_wdth_prec_ident.c \
@@ -42,12 +46,7 @@ SRCS_BONUS		= bonus/ft_printf_bonus.c \
 
 OBJS_BONUS		= $(SRCS_BONUS:.c=.o)
 
-LIBFT			= libft/libft.a
-
-NAME			= libftprintf.a
 NAME_BONUS		= libftprintf_bonus.a
-
-LIBFTPF_LINK	= -L. -l:libftprintf.a
 
 .c.o:			
 				$(CC) $(CC_FLAGS) -c $< -o $(<:.c=.o)
